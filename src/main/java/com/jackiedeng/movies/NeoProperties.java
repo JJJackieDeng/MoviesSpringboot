@@ -1,4 +1,4 @@
-package com.JackieTeng.movies;
+package com.jackiedeng.movies;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

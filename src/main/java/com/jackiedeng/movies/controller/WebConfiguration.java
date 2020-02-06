@@ -1,4 +1,4 @@
-package com.JackieTeng.movies.controller;
+package com.jackiedeng.movies.controller;
 
 import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

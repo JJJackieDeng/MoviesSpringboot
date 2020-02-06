@@ -1,7 +1,7 @@
-package com.JackieTeng.movies.controller;
+package com.jackiedeng.movies.controller;
 
-import com.JackieTeng.movies.pojo.User;
-import com.JackieTeng.movies.result.Result;
+import com.jackiedeng.movies.pojo.User;
+import com.jackiedeng.movies.result.Result;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;

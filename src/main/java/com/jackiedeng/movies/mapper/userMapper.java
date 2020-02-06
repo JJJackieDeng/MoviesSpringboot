@@ -1,6 +1,6 @@
-package com.JackieTeng.movies.mapper;
+package com.jackiedeng.movies.mapper;
 
-import com.JackieTeng.movies.pojo.User;
+import com.jackiedeng.movies.pojo.User;
 
 import java.util.List;
 

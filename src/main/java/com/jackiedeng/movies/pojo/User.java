@@ -1,4 +1,4 @@
-package com.JackieTeng.movies.pojo;
+package com.jackiedeng.movies.pojo;
 
 import javax.persistence.Entity;
 

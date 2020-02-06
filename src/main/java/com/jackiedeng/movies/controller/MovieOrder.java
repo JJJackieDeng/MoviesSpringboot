@@ -1,4 +1,4 @@
-package com.JackieTeng.movies.controller;
+package com.jackiedeng.movies.controller;
 
 
 

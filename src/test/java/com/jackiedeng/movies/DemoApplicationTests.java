@@ -1,4 +1,4 @@
-package com.JackieTeng.movies;
+package com.jackiedeng.movies;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

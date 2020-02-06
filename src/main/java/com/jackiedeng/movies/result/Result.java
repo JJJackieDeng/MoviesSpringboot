@@ -1,4 +1,4 @@
-package com.JackieTeng.movies.result;
+package com.jackiedeng.movies.result;
 
 /**
  * @Author jackie
