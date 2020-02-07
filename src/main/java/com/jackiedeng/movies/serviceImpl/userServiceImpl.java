@@ -1,5 +1,6 @@
 package com.jackiedeng.movies.serviceImpl;
 
+import com.jackiedeng.movies.mapper.userMapper;
 import com.jackiedeng.movies.pojo.User;
 import com.jackiedeng.movies.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 public class userServiceImpl implements userService {
     @Autowired
-    private userMapper userMapper;
+    private com.jackiedeng.movies.mapper.userMapper userMapper;
 
     @Override
     public List<User> findAll(){
