@@ -12,7 +12,7 @@ import java.util.List;
  * @Description
  */
 @Mapper
-public interface userMapper {
-    /*查询所有*/
-    public List<User> findall();
+public interface UserMapper {
+//    查询所有
+        List<User> findAll();
 }

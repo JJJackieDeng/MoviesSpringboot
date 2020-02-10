@@ -8,7 +8,6 @@ import javax.persistence.Entity;
  * @Date 2019/12/8 23:29
  * @Description
  */
-@Entity
 public class User{
     int id;
     String username;

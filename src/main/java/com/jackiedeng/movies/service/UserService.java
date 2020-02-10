@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.service;
 
 import com.jackiedeng.movies.pojo.User;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ import java.util.List;
  * @Date 2020/2/6 23:25
  * @Description
  */
-public interface userService {
+public interface UserService {
 
-    public List<User> findAll();
+     List<User> findAll();
+
+//    JSONObject listUser(JSONObject jsonObject);
 }
