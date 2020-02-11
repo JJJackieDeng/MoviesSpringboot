@@ -35,7 +35,8 @@ public class UserController {
 //    }
 
 
-    @RequestMapping("/userLists")
+
+    @GetMapping("userLists")
     public List<User> showUsers() {
         List<User> list = userService.findAll();
         return list;
@@ -47,11 +48,6 @@ public class UserController {
 //    }
 
 
-    @RequestMapping("showUser")
-    public String showUser(Model model){
-        List<User> list =userService.findAll();
 
-//        model.addAttribute("user",list.get(0));
-        return "redirect:index";
-    }
 }
+

@@ -5,7 +5,7 @@
 
 
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>Movies</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo1</name>
     <description>Demo project for Spring Boot</description>
@@ -151,6 +151,15 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <!--   描述存放资源的目录，该路径相对POM路径-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 

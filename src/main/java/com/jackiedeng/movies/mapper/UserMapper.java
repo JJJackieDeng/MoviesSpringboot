@@ -1,7 +1,9 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.User;
+import org.apache.ibatis.annotations.Select;
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,8 +13,9 @@ import java.util.List;
  * @Date 2020/2/6 23:10
  * @Description
  */
-@Mapper
+@Repository
 public interface UserMapper {
 //    查询所有
+//        @Select("select * from users")
         List<User> findAll();
 }
