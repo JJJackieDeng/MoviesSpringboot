@@ -1,8 +1,8 @@
 package com.jackiedeng.movies.pojo;
 
 import javax.persistence.Entity;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @Author jackie
@@ -12,11 +12,11 @@ import java.util.Date;
  */
 public class User{
     private int id;
-    private String username;
+    private String userName;
     private String password;
-    private String phonenumber;
-    private Timestamp createtime;
-    private Timestamp modifiedtime;
+    private String phoneNumber;
+    private Timestamp createTime;
+    private Timestamp modifiedTime;
 
     public int getId() {
         return id;
@@ -26,12 +26,12 @@ public class User{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -42,39 +42,42 @@ public class User{
         this.password = password;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public Timestamp getCreatetime() {
-        return createtime;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Timestamp createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
-    public Timestamp getModifiedtime() {
-        return modifiedtime;
+    public Timestamp getModifiedTime() {
+        return modifiedTime;
     }
 
-    public void setModifiedtime(Timestamp modifiedtime) {
-        this.modifiedtime = modifiedtime;
+    public void setModifiedTime(Timestamp modifiedTime) {
+        this.modifiedTime = modifiedTime;
     }
+
+
+
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
-                ", createtime=" + createtime +
-                ", modifiedtime=" + modifiedtime +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", createTime=" + createTime +
+                ", modifiedTime=" + modifiedTime +
                 '}';
     }
 }
