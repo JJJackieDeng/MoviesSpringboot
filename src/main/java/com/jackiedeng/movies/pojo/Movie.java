@@ -10,8 +10,8 @@ import java.sql.Timestamp;
  */
 public class Movie {
     private int id;
-    private String movie_id;
-    private String movieName;
+    private String movie_id; //未正确获取数据
+    private String movieName; //未正确获取数据
     private Timestamp createTime;
     private Timestamp modifiedTime;
 

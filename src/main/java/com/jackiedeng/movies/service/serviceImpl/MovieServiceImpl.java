@@ -25,6 +25,7 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<Movie> findAll(){
+
         return movieMapper.findAll();
     }
 }

@@ -1,29 +1,26 @@
 package com.jackiedeng.movies.controller;
 
-import com.jackiedeng.movies.pojo.Movie;
-import com.jackiedeng.movies.service.MovieService;
+import com.jackiedeng.movies.pojo.MovieInfo;
+import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 /**
  * @Author jackie
  * @Email 15975403320@163.com
- * @Date 2020/2/12 00:23
+ * @Date 2020/2/12 09:27
  * @Description
  */
 @RestController
-public class MovieController {
+public class MovieInfoController {
     @Autowired
-    private MovieService movieService;
-
-    @GetMapping("movieLists")
-    public List<Movie> showMovies(){
-        List<Movie> list = movieService.findAll();
+    private MovieInfoService movieInfoService;
+    @GetMapping("movieInfoLists")
+    public List<MovieInfo> showMovieInfo(){
+        List<MovieInfo> list = movieInfoService.findAll();
         return list;
     }
-
 }

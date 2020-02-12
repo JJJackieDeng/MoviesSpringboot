@@ -1,7 +1,6 @@
 package com.jackiedeng.movies.mapper;
 
-import com.jackiedeng.movies.pojo.Movie;
-import com.jackiedeng.movies.pojo.Order;
+import com.jackiedeng.movies.pojo.MovieInfo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,10 +8,10 @@ import java.util.List;
 /**
  * @Author jackie
  * @Email 15975403320@163.com
- * @Date 2020/2/12 00:26
+ * @Date 2020/2/12 09:28
  * @Description
  */
 @Repository
-public interface MovieMapper {
-    List<Movie> findAll();
+public interface MovieInfoMapper {
+    List<MovieInfo> findAll();
 }
