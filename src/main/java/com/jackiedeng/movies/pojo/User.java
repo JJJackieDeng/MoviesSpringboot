@@ -1,7 +1,5 @@
 package com.jackiedeng.movies.pojo;
 
-import javax.persistence.Entity;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
