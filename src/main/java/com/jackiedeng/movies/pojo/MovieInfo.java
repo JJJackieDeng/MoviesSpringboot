@@ -14,6 +14,7 @@ public class MovieInfo {
     private String movieName;
     private String actors;
     private String director;
+    private String release;
     private Timestamp createTime;
     private Timestamp modifiedTime;
 
@@ -73,6 +74,14 @@ public class MovieInfo {
         this.modifiedTime = modifiedTime;
     }
 
+    public String getRelease() {
+        return release;
+    }
+
+    public void setRelease(String release) {
+        this.release = release;
+    }
+
     @Override
     public String toString() {
         return "MovieInfo{" +
@@ -81,6 +90,7 @@ public class MovieInfo {
                 ", movieName='" + movieName + '\'' +
                 ", actors='" + actors + '\'' +
                 ", director='" + director + '\'' +
+                ", release='" + release + '\'' +
                 ", createTime=" + createTime +
                 ", modifiedTime=" + modifiedTime +
                 '}';

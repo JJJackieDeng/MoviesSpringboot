@@ -5,6 +5,6 @@
 <mapper namespace="com.jackiedeng.movies.mapper.MovieInfoMapper">
 
     <select id="findAll" parameterType="com.jackiedeng.movies.pojo.MovieInfo" resultType="com.jackiedeng.movies.pojo.MovieInfo">
-        select * from movieInfo
+        select * from movieInfo A left join movie B on A.id=B.id
     </select>
 </mapper>
