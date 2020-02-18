@@ -5,6 +5,7 @@ import com.jackiedeng.movies.service.OrderService;
 import com.jackiedeng.movies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,13 +17,20 @@ import java.util.List;
  * @Description
  */
 @RestController
+@RequestMapping("/order")
 public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("orderLists")
-    public List<Order> showOrders(){
-        List<Order> list = orderService.findAll();
-        return list;
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("selectOne")
+    public Order selectOne(Integer id) {
+        return this.orderService.queryById(id);
     }
+
 }

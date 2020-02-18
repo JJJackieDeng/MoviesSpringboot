@@ -5,10 +5,13 @@ import com.jackiedeng.movies.service.UserService;
 import com.jackiedeng.movies.service.serviceImpl.UserServiceImpl;
 import com.jackiedeng.movies.util.CommonUtil;
 import io.swagger.models.Model;
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.soap.SOAPBinding;
+import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,34 +23,14 @@ import java.util.List;
  * @Description
  */
 @RestController
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-//    @ResponseBody
-//    @RequestMapping("/test2")
-//    public User test2(){
-//        User user = new User();
-//        user.setId(12);
-//        user.setPassword("12");
-//        user.setUsername("phpfzh-test2");
-//        return user;
-//    }
-
-
-
-    @GetMapping("userLists")
-    public List<User> showUsers() {
-        List<User> list = userService.findAll();
-        return list;
+    @GetMapping("selectOne/{id}")
+    public User selectOne(@PathVariable Integer id) {
+        return this.userService.queryById(id);
     }
-
-//    @GetMapping("/list")
-//    public JSONObject listUser(HttpServletRequest request) {
-//        return userService.listUser(CommonUtil.request2Json(request));
-//    }
-
-
-
 }
 

@@ -3,8 +3,102 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jackiedeng.movies.mapper.MovieInfoMapper">
+    <resultMap type="com.jackiedeng.movies.pojo.MovieInfo" id="MovieinfoMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
+        <result property="director" column="director" jdbcType="VARCHAR"/>
+        <result property="actors" column="actors" jdbcType="VARCHAR"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>
+        <result property="release" column="release" jdbcType="VARCHAR"/>
+    </resultMap>
 
-    <select id="findAll" parameterType="com.jackiedeng.movies.pojo.MovieInfo" resultType="com.jackiedeng.movies.pojo.MovieInfo">
-        select * from movieInfo A left join movie B on A.id=B.id
+    <!--查询单个-->
+    <select id="queryById" resultMap="MovieinfoMap">
+        select
+          id, introduce, director, actors, movieLength, createTime, modifiedTime, release
+        from movies.movieinfo
+        where id = #{id}
     </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MovieinfoMap">
+        select
+          id, introduce, director, actors, movieLength, createTime, modifiedTime, release
+        from movies.movieinfo
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="MovieinfoMap">
+        select
+        id, introduce, director, actors, movieLength, createTime, modifiedTime, release
+        from movies.movieinfo
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="introduce != null and introduce != ''">
+                and introduce = #{introduce}
+            </if>
+            <if test="director != null and director != ''">
+                and director = #{director}
+            </if>
+            <if test="actors != null and actors != ''">
+                and actors = #{actors}
+            </if>
+            <if test="movielength != null and movielength != ''">
+                and movieLength = #{movielength}
+            </if>
+            <if test="createtime != null">
+                and createTime = #{createtime}
+            </if>
+            <if test="modifiedtime != null">
+                and modifiedTime = #{modifiedtime}
+            </if>
+            <if test="release != null and release != ''">
+                and release = #{release}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into movies.movieinfo(introduce, director, actors, movieLength, createTime, modifiedTime, release)
+        values (#{introduce}, #{director}, #{actors}, #{movielength}, #{createtime}, #{modifiedtime}, #{release})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update movies.movieinfo
+        <set>
+            <if test="introduce != null and introduce != ''">
+                introduce = #{introduce},
+            </if>
+            <if test="director != null and director != ''">
+                director = #{director},
+            </if>
+            <if test="actors != null and actors != ''">
+                actors = #{actors},
+            </if>
+            <if test="movielength != null and movielength != ''">
+                movieLength = #{movielength},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime},
+            </if>
+            <if test="modifiedtime != null">
+                modifiedTime = #{modifiedtime},
+            </if>
+            <if test="release != null and release != ''">
+                release = #{release},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from movies.movieinfo where id = #{id}
+    </delete>
 </mapper>

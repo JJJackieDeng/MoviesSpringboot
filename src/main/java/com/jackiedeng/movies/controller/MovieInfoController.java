@@ -4,6 +4,7 @@ import com.jackiedeng.movies.pojo.MovieInfo;
 import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,12 +16,13 @@ import java.util.List;
  * @Description
  */
 @RestController
+@RequestMapping("/movieInfo")
 public class MovieInfoController {
     @Autowired
     private MovieInfoService movieInfoService;
-    @GetMapping("movieInfoLists")
-    public List<MovieInfo> showMovieInfo(){
-        List<MovieInfo> list = movieInfoService.findAll();
-        return list;
+    @GetMapping("selectOne")
+    public MovieInfo selectOne(String id) {
+        return this.movieInfoService.queryById(id);
     }
+
 }
