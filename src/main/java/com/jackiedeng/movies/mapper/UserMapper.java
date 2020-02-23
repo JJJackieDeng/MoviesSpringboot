@@ -1,10 +1,7 @@
 package com.jackiedeng.movies.mapper;
 
-import com.jackiedeng.movies.pojo.Movie;
 import com.jackiedeng.movies.pojo.User;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,26 +35,26 @@ public interface UserMapper {
         /**
          * 通过实体作为筛选条件查询
          *
-         * @param users 实例对象
+         * @param user 实例对象
          * @return 对象列表
          */
-        List<User> queryAll(User users);
+        List<User> queryAll(User user);
 
         /**
          * 新增数据
          *
-         * @param users 实例对象
+         * @param user 实例对象
          * @return 影响行数
          */
-        int insert(User users);
+        int insert(User user);
 
         /**
          * 修改数据
          *
-         * @param users 实例对象
+         * @param id 实例对象
          * @return 影响行数
          */
-        int update(User users);
+        int update(int id);
 
         /**
          * 通过主键删除数据
@@ -66,4 +63,7 @@ public interface UserMapper {
          * @return 影响行数
          */
         int deleteById(Integer id);
+
+        User queryByName(@Param("userName") String userName,@Param("password") String password);
+
 }

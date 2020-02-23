@@ -2,6 +2,7 @@ package com.jackiedeng.movies.service.serviceImpl;
 
 import com.jackiedeng.movies.mapper.UserMapper;
 import com.jackiedeng.movies.pojo.User;
+import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
     /**
      * 通过ID查询单条数据
      *
@@ -33,7 +35,7 @@ public class UserServiceImpl implements UserService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     @Override
@@ -56,13 +58,13 @@ public class UserServiceImpl implements UserService {
     /**
      * 修改数据
      *
-     * @param user 实例对象
+     * @param id 实例对象
      * @return 实例对象
      */
     @Override
-    public User update(User user) {
-        this.userMapper.update(user);
-        return this.queryById(user.getId());
+    public User update(Integer id) {
+        this.userMapper.update(id);
+        return this.queryById(id);
     }
 
     /**
@@ -74,5 +76,42 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteById(Integer id) {
         return this.userMapper.deleteById(id) > 0;
+    }
+
+//    @Override
+//    public User selectByName(String userName) {
+//        return this.userMapper.queryByName(userName);
+//    }
+
+    @Override
+    public Result login(User user) {
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            User userName = userMapper.queryByName(user.getUserName(), user.getPassword());
+            if (userName == null) {
+                result.setMessage("用户名或密码错误");
+            } else {
+                result.setMessage("登录成功");
+                result.setSuccess(true);
+//                user.setUserName(userName);
+                result.setDetail(user);
+            }
+        } catch (Exception e) {
+            result.setMessage(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+    @Override
+    public User queryByName(String userName, String password) {
+        User user = userMapper.queryByName(userName, password);
+        if (user != null) {
+            return user;
+        }
+        return null;
     }
 }

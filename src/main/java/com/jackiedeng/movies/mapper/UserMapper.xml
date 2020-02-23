@@ -20,6 +20,17 @@
         where id = #{id}
     </select>
 
+    <!--根据用户名查询单个-->
+    <select id="queryByName" resultMap="UsersMap">
+        select
+        *
+        from users
+        where
+        userName = #{userName}
+        and
+        password = #{password}
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UsersMap">
         select

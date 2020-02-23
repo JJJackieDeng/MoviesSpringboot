@@ -1,7 +1,7 @@
 package com.jackiedeng.movies.service;
 
 import com.jackiedeng.movies.pojo.User;
-import org.json.JSONObject;
+import com.jackiedeng.movies.result.Result;
 
 import java.util.List;
 
@@ -40,10 +40,10 @@ public interface UserService {
      /**
       * 修改数据
       *
-      * @param user 实例对象
+      * @param id 实例对象
       * @return 实例对象
       */
-     User update(User user);
+     User update(Integer id);
 
      /**
       * 通过主键删除数据
@@ -52,5 +52,19 @@ public interface UserService {
       * @return 是否成功
       */
      boolean deleteById(Integer id);
+     /**
+      * 登录接口
+      *
+      * @param userName 登录专用接口
+      * @return 是否成功
+      */
+     User queryByName(String userName,String password);
+
+//     User selectByname(User user);
+     /**
+      * 用户登录
+      * */
+     Result login(User user);
+
 
 }
