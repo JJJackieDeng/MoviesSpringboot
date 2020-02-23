@@ -10,6 +10,8 @@ import java.sql.Timestamp;
  */
 public class User{
     private int id;
+    private int age;
+    private String sex;
     private String userName;
     private String password;
     private String phoneNumber;
@@ -22,6 +24,22 @@ public class User{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getUserName() {
@@ -65,12 +83,12 @@ public class User{
     }
 
 
-
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

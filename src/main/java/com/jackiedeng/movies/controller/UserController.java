@@ -46,7 +46,7 @@ public class UserController {
 //    }
 
     @ResponseBody
-    @RequestMapping("dologin")
+    @PostMapping("dologin")
     public User login(@RequestParam String userName, @RequestParam String password) {
         User user = userService.queryByName(userName, password);
 //        JSONObject jsonObject = new JSONObject();

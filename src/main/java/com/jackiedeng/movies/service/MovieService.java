@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface MovieService {
     List<Movie> findAll();
+
     /**
      * 通过ID查询单条数据
      *
@@ -25,7 +26,7 @@ public interface MovieService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Movie> queryAllByLimit(int offset, int limit);
@@ -39,6 +40,7 @@ public interface MovieService {
 
     /**
      * 修改数据
+     *
      * @param id 根据id更新数据
      */
     int update(int id);

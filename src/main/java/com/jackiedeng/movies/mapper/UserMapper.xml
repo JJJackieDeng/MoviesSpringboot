@@ -6,6 +6,8 @@
     <resultMap type="com.jackiedeng.movies.pojo.User" id="UsersMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="userName" column="userName" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="phoneNumber" column="phoneNumber" jdbcType="VARCHAR"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
@@ -34,19 +36,26 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UsersMap">
         select
-        id, userName, password, phoneNumber, createTime, modifiedTime
-        from movies.users
+        *
+        from
+        users
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UsersMap">
         select
-        id, userName, password, phoneNumber, createTime, modifiedTime
+        *
         from movies.users
         <where>
             <if test="id != null">
                 and id = #{id}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
             </if>
             <if test="username != null and username != ''">
                 and userName = #{username}
@@ -68,8 +77,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into movies.users(userName, password, phoneNumber, createTime, modifiedTime)
-        values (#{username}, #{password}, #{phonenumber}, #{createtime}, #{modifiedtime})
+        insert into movies.users(userName, password, age,sex,phoneNumber, createTime, modifiedTime)
+        values (#{username}, #{password},#{age},#{sex} ,#{phonenumber}, #{createtime}, #{modifiedtime})
     </insert>
 
     <!--通过主键修改数据-->
@@ -78,6 +87,12 @@
         <set>
             <if test="username != null and username != ''">
                 userName = #{username},
+            </if>
+            <if test="age != null and age != ''">
+                age = #{age},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
             </if>
             <if test="password != null and password != ''">
                 password = #{password},
