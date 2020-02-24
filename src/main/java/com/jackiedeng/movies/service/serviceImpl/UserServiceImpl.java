@@ -50,21 +50,30 @@ public class UserServiceImpl implements UserService {
      * @return 实例对象
      */
     @Override
-    public User insert(User user) {
-        this.userMapper.insert(user);
-        return user;
+    public boolean insert(User user) {
+        try {
+            this.userMapper.insert(user);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
      * 修改数据
      *
-     * @param id 实例对象
+     * @param user 实例对象
      * @return 实例对象
      */
     @Override
-    public User update(Integer id) {
-        this.userMapper.update(id);
-        return this.queryById(id);
+    public boolean update(User user) {
+        try {
+            this.userMapper.update(user);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+
     }
 
     /**

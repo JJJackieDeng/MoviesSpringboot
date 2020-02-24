@@ -1,20 +1,14 @@
 package com.jackiedeng.movies.controller;
 
 import com.jackiedeng.movies.pojo.User;
+import com.jackiedeng.movies.result.Result;
+import com.jackiedeng.movies.result.ResultFactory;
 import com.jackiedeng.movies.service.UserService;
-import com.jackiedeng.movies.service.serviceImpl.UserServiceImpl;
-import com.jackiedeng.movies.util.CommonUtil;
-import io.swagger.models.Model;
-import org.apache.ibatis.annotations.Param;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.sun.javafx.scene.web.Debugger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.Id;
-import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
+
 import java.util.List;
 
 /**
@@ -29,21 +23,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("selectOne/{id}")
+    @GetMapping("/selectOne/{id}")
     public User selectOne(@PathVariable Integer id) {
         return this.userService.queryById(id);
     }
 
-    @PostMapping("update/{id}")
-    public User updateOne(@PathVariable Integer id) {
-        return this.userService.update(id);
+    @PostMapping("/update")
+    public Result updateOne(@RequestBody User requestUser) {
+        boolean flag = userService.update(requestUser);
+        if (flag) {
+            return ResultFactory.bulidSuccessResult(requestUser);
+        } else {
+            return ResultFactory.bulidFailResult("添加失败");
+        }
+
     }
-//    @GetMapping("selectByName/{userName}")
-//    public User selectByName(@PathVariable String userName){
-//        return this.userService.queryByName(userName);
-//
-//
-//    }
 
     @ResponseBody
     @PostMapping("dologin")
@@ -51,17 +45,18 @@ public class UserController {
         User user = userService.queryByName(userName, password);
 //        JSONObject jsonObject = new JSONObject();
         if (user != null) {
-                return user;
+            return user;
         } else {
             System.out.println("无数据");
-           return null;
+            return null;
         }
 //        return jsonObject.toString();
 //        return this.userService.queryByName(userName, password);
     }
+
     @GetMapping("selectAll")
-    public List<User> selectAll(@RequestParam Integer offset,@RequestParam Integer limit){
-        List<User> user =userService.queryAllByLimit(offset,limit);
+    public List<User> selectAll(@RequestParam Integer offset, @RequestParam Integer limit) {
+        List<User> user = userService.queryAllByLimit(offset, limit);
         if (user != null) {
             return user;
         } else {

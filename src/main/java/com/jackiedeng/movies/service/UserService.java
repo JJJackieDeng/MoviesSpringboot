@@ -35,15 +35,15 @@ public interface UserService {
       * @param user 实例对象
       * @return 实例对象
       */
-     User insert(User user);
+     boolean insert(User user);
 
      /**
       * 修改数据
       *
-      * @param id 实例对象
+      * @param user 实例对象
       * @return 实例对象
       */
-     User update(Integer id);
+     boolean update(User user);
 
      /**
       * 通过主键删除数据
