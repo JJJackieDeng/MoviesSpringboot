@@ -78,25 +78,17 @@ public class UserServiceImpl implements UserService {
         return this.userMapper.deleteById(id) > 0;
     }
 
-//    @Override
-//    public User selectByName(String userName) {
-//        return this.userMapper.queryByName(userName);
-//    }
-
     @Override
     public Result login(User user) {
-        Result result = new Result();
-        result.setSuccess(false);
-        result.setDetail(null);
+        Result result = new Result(404,null,user);
         try {
             User userName = userMapper.queryByName(user.getUserName(), user.getPassword());
             if (userName == null) {
                 result.setMessage("用户名或密码错误");
             } else {
                 result.setMessage("登录成功");
-                result.setSuccess(true);
-//                user.setUserName(userName);
-                result.setDetail(user);
+                result.setCode(200);
+                result.setData(user);
             }
         } catch (Exception e) {
             result.setMessage(e.getMessage());

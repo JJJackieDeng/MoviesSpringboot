@@ -1,26 +1,40 @@
 package com.jackiedeng.movies.result;
 
+import java.io.Serializable;
+
 /**
  * @Author jackie
  * @Email 15975403320@163.com
  * @Date 2020/2/16 17:18
  * @Description
  */
-public class Result<T> {
+public class Result implements Serializable {
 
+    private static final long serialVersionUID = -4762928619495260423L;
     /**
-    *返回给前端的信息*/
+     * 状态码*/
+    private Integer code;
+    /**
+     * 描述*/
     private String message;
     /**
-     * 请求是否正常
-     *
-     */
-    private boolean success;
+     * 返回数据*/
+    private Object data;
 
-    /**
-     *返回的数据
-     */
-    private T detail;
+
+    public Result(Integer code, String message, Object data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
     public String getMessage() {
         return message;
@@ -30,19 +44,11 @@ public class Result<T> {
         this.message = message;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public Object getData() {
+        return data;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public T getDetail() {
-        return detail;
-    }
-
-    public void setDetail(T detail) {
-        this.detail = detail;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

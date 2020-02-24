@@ -59,5 +59,17 @@ public class UserController {
 //        return jsonObject.toString();
 //        return this.userService.queryByName(userName, password);
     }
+    @GetMapping("selectAll")
+    public List<User> selectAll(@RequestParam Integer offset,@RequestParam Integer limit){
+        List<User> user =userService.queryAllByLimit(offset,limit);
+        if (user != null) {
+            return user;
+        } else {
+            System.out.println("无数据");
+            return null;
+        }
+    }
+
+
 }
 
