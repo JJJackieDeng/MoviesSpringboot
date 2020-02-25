@@ -30,54 +30,54 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.jackiedeng.movies.pojo.Movie" useGeneratedKeys="true">
     insert into movie (movieName, MOVIE_ID, createTime,
       modifiedTime)
-    values (#{moviename,jdbcType=VARCHAR}, #{movieId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
-      #{modifiedtime,jdbcType=TIMESTAMP})
+    values (#{movieName,jdbcType=VARCHAR}, #{movieId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{modifiedTime,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.jackiedeng.movies.pojo.Movie" useGeneratedKeys="true">
         insert into movie
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="moviename != null">
+            <if test="movieName != null">
                 movieName,
             </if>
             <if test="movieId != null">
                 MOVIE_ID,
             </if>
-            <if test="createtime != null">
+            <if test="createTime != null">
                 createTime,
             </if>
-            <if test="modifiedtime != null">
+            <if test="modifiedTime != null">
                 modifiedTime,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="moviename != null">
-                #{moviename,jdbcType=VARCHAR},
+            <if test="movieName != null">
+                #{movieName,jdbcType=VARCHAR},
             </if>
             <if test="movieId != null">
                 #{movieId,jdbcType=VARCHAR},
             </if>
-            <if test="createtime != null">
-                #{createtime,jdbcType=TIMESTAMP},
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="modifiedtime != null">
-                #{modifiedtime,jdbcType=TIMESTAMP},
+            <if test="modifiedTime != null">
+                #{modifiedTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.jackiedeng.movies.pojo.Movie">
         update movie
         <set>
-            <if test="moviename != null">
-                movieName = #{moviename,jdbcType=VARCHAR},
+            <if test="movieName != null">
+                movieName = #{movieName,jdbcType=VARCHAR},
             </if>
             <if test="movieId != null">
-                MOVIE_ID = #{movieId,jdbcType=VARCHAR},
+                MOVIE_ID = #{MOVIE_ID,jdbcType=VARCHAR},
             </if>
-            <if test="createtime != null">
-                createTime = #{createtime,jdbcType=TIMESTAMP},
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="modifiedtime != null">
-                modifiedTime = #{modifiedtime,jdbcType=TIMESTAMP},
+            <if test="modifiedTime != null">
+                modifiedTime = #{modifiedTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -94,23 +94,23 @@
     <update id="update">
         update movies.movie
         <set>
-            <if test="moviename != null and moviename != ''">
-                movieName = #{moviename},
+            <if test="movieName != null and movieName != ''">
+                movieName = #{movieName},
             </if>
             <if test="movieId != null and movieId != ''">
-                MOVIE_ID = #{movieId},
+                MOVIE_ID = #{MOVIE_ID},
             </if>
-            <if test="createtime != null">
-                createTime = #{createtime},
+            <if test="createTime != null">
+                createTime = #{createTime},
             </if>
-            <if test="modifiedtime != null">
-                modifiedTime = #{modifiedtime},
+            <if test="modifiedTime != null">
+                modifiedTime = #{modifiedTime},
             </if>
         </set>
         where id = #{id}
     </update>
     <select id="findAll" parameterType="com.jackiedeng.movies.pojo.Movie" resultType="com.jackiedeng.movies.pojo.Movie">
-           select * from orders
+           select * from movie
     </select>
     <select id="queryById" parameterType="com.jackiedeng.movies.pojo.Movie" resultType="com.jackiedeng.movies.pojo.Movie">
         select * from movie where id=#{id}
@@ -118,7 +118,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultType="com.jackiedeng.movies.pojo.Movie">
         select
-          movieName, MOVIE_ID, createTime, modifiedTime, id
+         *
         from movies.movie
         limit #{offset}, #{limit}
     </select>

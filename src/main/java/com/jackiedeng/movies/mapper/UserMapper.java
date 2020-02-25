@@ -62,7 +62,7 @@ public interface UserMapper {
          * @param id 主键
          * @return 影响行数
          */
-        int deleteById(Integer id);
+        int deleteById(User user);
 
         User queryByName(@Param("userName") String userName,@Param("password") String password);
 
