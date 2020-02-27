@@ -83,8 +83,14 @@ public class UserServiceImpl implements UserService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(User user) {
-        return this.userMapper.deleteById(user) > 0;
+    public boolean deleteById(Integer id) {
+        try {
+            this.userMapper.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return true;
     }
 
     @Override

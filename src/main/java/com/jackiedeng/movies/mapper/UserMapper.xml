@@ -33,7 +33,7 @@
         password = #{password}
     </select>
 
-    <!--查询指定行数据-->
+    <!--分页查询所有-->
     <select id="queryAllByLimit" resultMap="UsersMap">
         select
         *
@@ -49,7 +49,7 @@
         from movies.users
     </select>
 
-    <!--新增所有列-->
+    <!--新增一条数据-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into movies.users(userName, password, age,sex,phoneNumber, createTime, modifiedTime)
         values (#{userName}, #{password},#{age},#{sex} ,#{phoneNumber}, #{createTime}, #{modifiedTime})

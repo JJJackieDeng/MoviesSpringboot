@@ -17,7 +17,7 @@ public interface UserMapper {
         /**
          * 通过ID查询单条数据
          *
-         * @param id 主键
+         * @param
          * @return 实例对象
          */
         User queryById(Integer id);
@@ -58,11 +58,10 @@ public interface UserMapper {
 
         /**
          * 通过主键删除数据
-         *
-         * @param id 主键
+         *主键
          * @return 影响行数
          */
-        int deleteById(User user);
+        int deleteById(Integer id);
 
         User queryByName(@Param("userName") String userName,@Param("password") String password);
 

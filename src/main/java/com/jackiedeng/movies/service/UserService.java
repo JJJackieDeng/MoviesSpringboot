@@ -15,7 +15,7 @@ public interface UserService {
      /**
       * 通过ID查询单条数据
       *
-      * @param id 主键
+      * @param
       * @return 实例对象
       */
      User queryById(Integer id);
@@ -51,7 +51,7 @@ public interface UserService {
       * @param id 主键
       * @return 是否成功
       */
-     boolean deleteById(User user);
+     boolean deleteById(Integer id);
      /**
       * 登录接口
       *
