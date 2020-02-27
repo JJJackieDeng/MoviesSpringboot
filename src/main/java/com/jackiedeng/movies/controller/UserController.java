@@ -78,17 +78,17 @@ public class UserController {
         }
     }
 
-//    @PostMapping("add")
-//    public Result addUser(@RequestParam User user){
-//        boolean flag= userService.insert(user);
-//        if (flag){
-//            /*新增成功的时候*/
-//            return ResultFactory.bulidSuccessResult(userService.queryById(user));
-//        }else{
-//            return ResultFactory.bulidFailResult("添加失败");
-//        }
-//
-//    }
+    @PostMapping("add")
+    public Result addUser(@RequestParam User user){
+        boolean flag= userService.insert(user);
+        if (flag){
+            /*新增成功的时候*/
+            return ResultFactory.buildResult(200,"添加成功",flag);
+        }else{
+            return ResultFactory.bulidFailResult("添加失败");
+        }
+
+    }
 
 }
 

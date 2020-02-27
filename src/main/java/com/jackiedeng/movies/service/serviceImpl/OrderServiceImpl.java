@@ -33,7 +33,13 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public List<Order> queryAllByLimit(int offset, int limit) {
-        return this.orderMapper.queryAllByLimit(offset, limit);
+        List<Order> orders = this.orderMapper.queryAllByLimit(offset, limit);
+        if (orders != null) {
+            return orders;
+        } else {
+            System.out.println("暂无订单！");
+            return null;
+        }
     }
 
     /**
@@ -43,9 +49,13 @@ public class OrderServiceImpl implements OrderService {
      * @return 实例对象
      */
     @Override
-    public Order insert(Order order) {
-        this.orderMapper.insert(order);
-        return order;
+    public boolean insert(Order order) {
+        try {
+            this.orderMapper.insert(order);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -55,9 +65,14 @@ public class OrderServiceImpl implements OrderService {
      * @return 实例对象
      */
     @Override
-    public Order update(Order orders) {
-        this.orderMapper.update(orders);
-        return this.queryById(orders.getId());
+    public boolean update(Order orders) {
+        try {
+            this.orderMapper.update(orders);
+        } catch (Exception e) {
+            return false;
+        }
+//        return this.queryById(orders.getId());
+        return true;
     }
 
     /**

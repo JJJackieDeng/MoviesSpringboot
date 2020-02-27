@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.service;
 
 import com.jackiedeng.movies.pojo.Order;
+import org.omg.CORBA.ORB;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface OrderService {
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param
      * @return 实例对象
      */
     Order queryById(Integer id);
@@ -35,7 +36,7 @@ public interface OrderService {
      * @param order 实例对象
      * @return 实例对象
      */
-    Order insert(Order order);
+    boolean insert(Order order);
 
     /**
      * 修改数据
@@ -43,7 +44,7 @@ public interface OrderService {
      * @param order 实例对象
      * @return 实例对象
      */
-    Order update(Order order);
+    boolean update(Order order);
 
     /**
      * 通过主键删除数据

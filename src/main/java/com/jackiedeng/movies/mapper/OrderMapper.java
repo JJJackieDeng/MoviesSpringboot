@@ -17,7 +17,7 @@ public interface OrderMapper {
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param
      * @return 实例对象
      */
     Order queryById(Integer id);
@@ -46,7 +46,7 @@ public interface OrderMapper {
      * @param orders 实例对象
      * @return 影响行数
      */
-    int insert(Order orders);
+    boolean insert(Order orders);
 
     /**
      * 修改数据
@@ -54,7 +54,7 @@ public interface OrderMapper {
      * @param order 实例对象
      * @return 影响行数
      */
-    int update(Order order);
+    boolean update(Order order);
 
     /**
      * 通过主键删除数据

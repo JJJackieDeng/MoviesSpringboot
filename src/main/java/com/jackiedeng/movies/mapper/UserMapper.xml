@@ -51,8 +51,8 @@
 
     <!--新增一条数据-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into movies.users(userName, password, age,sex,phoneNumber, createTime, modifiedTime)
-        values (#{userName}, #{password},#{age},#{sex} ,#{phoneNumber}, #{createTime}, #{modifiedTime})
+        insert into movies.users(userName, password, age,sex,phoneNumber, createTime)
+        values (#{userName}, #{password},#{age},#{sex} ,#{phoneNumber}, #{createTime})
     </insert>
 
     <!--通过主键修改数据-->
