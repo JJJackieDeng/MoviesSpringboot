@@ -79,7 +79,7 @@ public class UserController {
     }
 
     @PostMapping("add")
-    public Result addUser(@RequestBody User user){
+    public Result addUser(User user){
         boolean flag= userService.insert(user);
         if (flag){
             /*新增成功的时候*/
