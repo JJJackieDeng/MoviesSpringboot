@@ -1,5 +1,6 @@
 package com.jackiedeng.movies.pojo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -8,12 +9,15 @@ import java.sql.Timestamp;
  * @Date 2020/2/12 00:27
  * @Description
  */
-public class Movie {
+public class Movie implements Serializable {
     private int id;
-    private String movie_id; //未正确获取数据
-    private String movieName; //未正确获取数据
+    private String movie_id;
+    private String movieName;
     private Timestamp createTime;
     private Timestamp modifiedTime;
+    /**
+     * 联查MovieInfo表*/
+    private MovieInfo movieInfo;
 
     public int getId() {
         return id;

@@ -14,7 +14,6 @@ import java.util.List;
  */
 @Repository
 public interface MovieMapper {
-    List<Movie> findAll();
 
     int deleteByPrimaryKey(Integer id);
 
@@ -30,7 +29,7 @@ public interface MovieMapper {
 
     Movie selectByPrimaryKey(Integer id);
 
-    int queryById(Integer id);
+    Movie queryById(Integer id);
 
     List<Movie> queryAllByLimit(int offset, int limit);
 

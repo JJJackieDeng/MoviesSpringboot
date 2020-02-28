@@ -2,6 +2,7 @@ package com.jackiedeng.movies.service;
 
 
 import com.jackiedeng.movies.pojo.Movie;
+import com.jackiedeng.movies.pojo.Order;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @Description
  */
 public interface MovieService {
-    List<Movie> findAll();
+
 
     /**
      * 通过ID查询单条数据
@@ -20,7 +21,7 @@ public interface MovieService {
      * @param id 主键
      * @return 实例对象
      */
-    int queryById(Integer id);
+    Movie queryById(Integer id);
 
     /**
      * 查询多条数据

@@ -1,6 +1,8 @@
 package com.jackiedeng.movies.pojo;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @Author jackie
@@ -8,7 +10,7 @@ import java.sql.Timestamp;
  * @Date 2020/2/12 00:27
  * @Description
  */
-public class MovieInfo {
+public class MovieInfo implements Serializable {
     private String id;
     private String introduce;
     private String movieName;
@@ -18,6 +20,9 @@ public class MovieInfo {
     private String poster;
     private Timestamp createTime;
     private Timestamp modifiedTime;
+    /**
+     * 作为“多”与movie联表查询*/
+    private List<Movie> movie;
 
     public String getId() {
         return id;

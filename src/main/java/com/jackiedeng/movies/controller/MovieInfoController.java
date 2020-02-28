@@ -5,9 +5,11 @@ import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 
 /**
  * @Author jackie
@@ -23,6 +25,10 @@ public class MovieInfoController {
     @GetMapping("selectOne")
     public MovieInfo selectOne(String id) {
         return this.movieInfoService.queryById(id);
+    }
+    @GetMapping("selectAll")
+    public List<MovieInfo> selectAll(@RequestParam Integer offset,@RequestParam Integer limit){
+        return this.movieInfoService.queryAllByLimit(offset,limit);
     }
 
 }

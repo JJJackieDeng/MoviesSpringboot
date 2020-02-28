@@ -71,7 +71,6 @@ public class OrderServiceImpl implements OrderService {
         } catch (Exception e) {
             return false;
         }
-//        return this.queryById(orders.getId());
         return true;
     }
 

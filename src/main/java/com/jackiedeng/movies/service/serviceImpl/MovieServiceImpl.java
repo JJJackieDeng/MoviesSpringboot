@@ -5,6 +5,7 @@ import com.jackiedeng.movies.mapper.MovieMapper;
 
 import com.jackiedeng.movies.pojo.Movie;
 
+import com.jackiedeng.movies.pojo.Order;
 import com.jackiedeng.movies.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,6 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     MovieMapper movieMapper;
 
-    @Override
-    public List<Movie> findAll() {
-
-        return movieMapper.findAll();
-    }
 
     @Override
     /**
@@ -36,7 +32,7 @@ public class MovieServiceImpl implements MovieService {
      * @param id 主键
      * @return 实例对象
      */
-    public int queryById(Integer id) {
+    public Movie queryById(Integer id) {
         return movieMapper.queryById(id);
     }
 
@@ -76,7 +72,7 @@ public class MovieServiceImpl implements MovieService {
      * @return 实例对象
      */
 
-    public int update(Movie movie) {
+    public Movie update(Movie movie) {
         this.movieMapper.update(movie);
         return this.queryById(movie.getId());
     }
