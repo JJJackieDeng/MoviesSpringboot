@@ -9,15 +9,14 @@
         <result column="MOVIE_ID" jdbcType="VARCHAR" property="movie_id"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
-<!--        <collection property="movieInfo" ofType="com.jackiedeng.movies.pojo.MovieInfo" column="movie_id">-->
-<!--            <result property="id" column="id" jdbcType="VARCHAR"/>-->
-<!--            <result property="introduce" column="introduce" jdbcType="VARCHAR"/>-->
-<!--            <result property="director" column="director" jdbcType="VARCHAR"/>-->
-<!--            <result property="actors" column="actors" jdbcType="VARCHAR"/>-->
-<!--            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>-->
-<!--            <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>-->
-<!--            <result property="release" column="release" jdbcType="VARCHAR"/>-->
-<!--        </collection>-->
+        <!-- movieInfo-->
+        <association property="movieInfo" javaType="com.jackiedeng.movies.pojo.MovieInfo">
+            <id column="Info" property="id"></id>
+            <result column="introduce" jdbcType="VARCHAR" property="introduce"/>
+            <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
+        </association>
+
     </resultMap>
     <sql id="Base_Column_List">
     id, movieName, MOVIE_ID, createTime, modifiedTime
@@ -133,11 +132,12 @@
 --         where
 --         MOVIE_ID=movieinfo.id
 --         limit #{offset}, #{limit}
-        SELECT
-        m.id,m.movieName,i.poster,i.introduce,i.director,i.actors,i.movieLength,i.release
-        from
-        movie m,movieinfo i
-        where
-        m.MOVIE_ID=i.id=#{id}
+
+    SELECT
+    m.id,m.movieName,i.id info,i.poster,i.introduce,i.director,i.actors,i.movieLength,i.release
+    from
+    movie m,movieinfo i
+    where
+    m.MOVIE_ID=i.id=#{id}
     </select>
 </mapper>
