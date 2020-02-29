@@ -2,6 +2,7 @@ package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Movie;
 import com.jackiedeng.movies.pojo.Order;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public interface MovieMapper {
 
     Movie queryById(Integer id);
 
-    List<Movie> queryAllByLimit(int offset, int limit);
+    List<Movie> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
     void update(Movie movie);
 

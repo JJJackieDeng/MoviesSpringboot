@@ -12,9 +12,12 @@
         <!-- movieInfo-->
         <association property="movieInfo" javaType="com.jackiedeng.movies.pojo.MovieInfo">
             <id column="Info" property="id"></id>
+            <result property="director" column="director" jdbcType="VARCHAR"/>
+            <result property="actors" column="actors" jdbcType="VARCHAR"/>
+            <result property="movieLength" column="movieLength" jdbcType="VARCHAR"/>
             <result column="introduce" jdbcType="VARCHAR" property="introduce"/>
-            <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
-            <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
+            <result property="release" column="release" jdbcType="VARCHAR"/>
+            <result property="poster" column="poster" jdbcType="VARCHAR"/>
         </association>
 
     </resultMap>
@@ -124,20 +127,14 @@
         select * from movie where id=#{id}
     </select>
     <!--查询所有行数据-->
-    <select id="queryAllByLimit" resultMap="BaseResultMap">
---         select
---         *
---         from
---         movie,movieinfo
---         where
---         MOVIE_ID=movieinfo.id
---         limit #{offset}, #{limit}
-
+    <!--todo 还有createTime与modifiedTime未获取-->
+    <select id="queryAllByLimit"   resultMap="BaseResultMap">
     SELECT
     m.id,m.movieName,i.id info,i.poster,i.introduce,i.director,i.actors,i.movieLength,i.release
     from
     movie m,movieinfo i
     where
-    m.MOVIE_ID=i.id=#{id}
+    m.MOVIE_ID=i.id
+     limit #{offset}, #{limit}
     </select>
 </mapper>

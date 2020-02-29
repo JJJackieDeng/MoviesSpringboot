@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * @Date 2020/2/12 00:27
  * @Description
  */
-public class Movie implements Serializable {
+public class Movie{
     private int id;
     private String movie_id;
     private String movieName;
@@ -18,6 +18,14 @@ public class Movie implements Serializable {
     /**
      * 联查MovieInfo表*/
     private MovieInfo movieInfo;
+
+    public MovieInfo getMovieInfo() {
+        return movieInfo;
+    }
+
+    public void setMovieInfo(MovieInfo movieInfo) {
+        this.movieInfo = movieInfo;
+    }
 
     public int getId() {
         return id;

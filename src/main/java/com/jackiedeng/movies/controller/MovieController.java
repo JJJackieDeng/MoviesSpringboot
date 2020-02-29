@@ -1,7 +1,11 @@
 package com.jackiedeng.movies.controller;
 
 import com.jackiedeng.movies.pojo.Movie;
+import com.jackiedeng.movies.pojo.User;
+import com.jackiedeng.movies.result.Result;
+import com.jackiedeng.movies.result.ResultFactory;
 import com.jackiedeng.movies.service.MovieService;
+import javafx.util.BuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +29,17 @@ public class MovieController {
         return this.movieService.queryById(id);
 
     }
+    /**
+     * 分页查询查询全部用户*/
     @GetMapping("selectAll")
-    public List<Movie> selectAll(@RequestParam int offset,@RequestParam int limit){
-        return movieService.queryAllByLimit(offset,limit);
-
+    public List<Movie> selectAll(@RequestParam Integer offset, @RequestParam Integer limit) {
+        List<Movie> movie = movieService.queryAllByLimit(offset, limit);
+        if (movie != null) {
+            return movie;
+        } else {
+            System.out.println("无数据");
+            return null;
+        }
     }
 
 
