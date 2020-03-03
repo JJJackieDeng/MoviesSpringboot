@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * @Description
  */
 public class Order {
-    private int id;
+    private Integer id;
     private String orderUser;
     private String orderId;
     private String status;
@@ -21,11 +21,11 @@ public class Order {
     private Timestamp createTime;
     private Timestamp modifiedTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * @Description
  */
 public class Movie{
-    private int id;
+    private Integer id;
     private String movie_id;
     private String movieName;
     private Timestamp createTime;
@@ -27,11 +27,11 @@ public class Movie{
         this.movieInfo = movieInfo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

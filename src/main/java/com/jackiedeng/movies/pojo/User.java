@@ -9,28 +9,30 @@ import java.sql.Timestamp;
  * @Description
  */
 public class User{
-    private int id;
-    private int age;
+    private Integer id;
+    private Integer age;
     private String sex;
     private String userName;
     private String password;
     private String phoneNumber;
+    /**加密时使用*/
+    private String salt;
     private Timestamp createTime;
     private Timestamp modifiedTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -48,6 +50,14 @@ public class User{
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getPassword() {

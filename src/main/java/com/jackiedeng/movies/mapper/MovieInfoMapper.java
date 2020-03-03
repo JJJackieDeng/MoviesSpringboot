@@ -54,7 +54,7 @@ public interface MovieInfoMapper {
      * @param movieinfo 实例对象
      * @return 影响行数
      */
-    int update(MovieInfo movieinfo);
+    boolean update(MovieInfo movieinfo);
 
     /**
      * 通过主键删除数据

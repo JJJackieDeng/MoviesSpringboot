@@ -42,7 +42,7 @@ public interface MovieInfoService {
      * @param movieinfo 实例对象
      * @return 实例对象
      */
-    MovieInfo update(MovieInfo movieinfo);
+    boolean update(MovieInfo movieinfo);
 
     /**
      * 通过主键删除数据

@@ -127,7 +127,6 @@
         select * from movie where id=#{id}
     </select>
     <!--查询所有行数据-->
-    <!--todo 还有createTime与modifiedTime未获取-->
     <select id="queryAllByLimit"   resultMap="BaseResultMap">
     SELECT
     m.id,m.movieName,i.id info,i.poster,i.introduce,i.director,i.actors,i.movieLength,i.release

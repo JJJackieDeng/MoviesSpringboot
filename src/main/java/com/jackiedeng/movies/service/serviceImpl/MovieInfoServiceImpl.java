@@ -6,6 +6,7 @@ import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Id;
 import java.util.List;
 
 /**
@@ -61,9 +62,9 @@ public class MovieInfoServiceImpl implements MovieInfoService {
      * @return 实例对象
      */
     @Override
-    public MovieInfo update(MovieInfo movieinfo) {
-        this.movieInfoMapper.update(movieinfo);
-        return this.queryById(movieinfo.getId());
+    public boolean update(MovieInfo movieinfo) {
+        return this.movieInfoMapper.update(movieinfo);
+
     }
 
     /**

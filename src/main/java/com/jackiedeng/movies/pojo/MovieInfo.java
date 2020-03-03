@@ -11,7 +11,7 @@ import java.util.List;
  * @Description
  */
 public class MovieInfo {
-    private String id;
+    private Integer id;
     private String introduce;
     private String movieLength;
     private String actors;
@@ -21,11 +21,11 @@ public class MovieInfo {
     private Timestamp createTime;
     private Timestamp modifiedTime;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
