@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackiedeng.movies.mapper.ScoreMapper">
+
+    <resultMap type="com.jackiedeng.movies.pojo.Score" id="ScoreMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="movie_id" column="movie_id" jdbcType="INTEGER"/>
+        <result property="score" column="score" jdbcType="NUMERIC"/>
+        <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+        <result property="comments" column="comments" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ScoreMap">
+        select
+          id, movie_id, score, user_id, comments
+        from movies.score
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ScoreMap">
+        select
+          id, movie_id, score, user_id, comments
+        from movies.score
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ScoreMap">
+        select
+          id, movie_id, score, user_id, comments
+        from movies.score
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="movieId != null">
+                and movie_id = #{movieId}
+            </if>
+            <if test="score != null">
+                and score = #{score}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="comments != null and comments != ''">
+                and comments = #{comments}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into movies.score(movie_id, score, user_id, comments)
+        values (#{movieId}, #{score}, #{userId}, #{comments})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update movies.score
+        <set>
+            <if test="movieId != null">
+                movie_id = #{movieId},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="comments != null and comments != ''">
+                comments = #{comments},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from movies.score where id = #{id}
+    </delete>
+
+</mapper>

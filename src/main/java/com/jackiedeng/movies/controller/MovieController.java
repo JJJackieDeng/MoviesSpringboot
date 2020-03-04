@@ -30,7 +30,7 @@ public class MovieController {
 
     }
     /**
-     * 分页查询查询全部用户*/
+     * 分页查询查询全部电影*/
     @GetMapping("selectAll")
     public List<Movie> selectAll(@RequestParam Integer offset, @RequestParam Integer limit) {
         List<Movie> movie = movieService.queryAllByLimit(offset, limit);
