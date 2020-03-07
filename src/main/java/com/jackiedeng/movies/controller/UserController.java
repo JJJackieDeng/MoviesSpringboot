@@ -13,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.xml.crypto.Data;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -108,7 +105,10 @@ public class UserController {
         String firstPass = MD5Util.inputPassToFormPass(user.getPassword());
         /**
          * 第二次加密*/
-        String secondPass = MD5Util.inputPassToDBPass(firstPass, "1a2b3c4d");
+//        生成8位数的salt
+        String salt =JwtUtil.getCharAndNum(8);
+        String secondPass = MD5Util.inputPassToDBPass(firstPass,salt);
+        user.setSalt(salt);
         user.setPassword(secondPass);
         boolean flag = userService.insert(user);
         if (flag) {

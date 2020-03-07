@@ -9,6 +9,7 @@
         <result property="age" column="age" jdbcType="INTEGER"/>
         <result property="sex" column="sex" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="salt" column="salt" jdbcType="VARCHAR"/>
         <result property="phoneNumber" column="phoneNumber" jdbcType="VARCHAR"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>
