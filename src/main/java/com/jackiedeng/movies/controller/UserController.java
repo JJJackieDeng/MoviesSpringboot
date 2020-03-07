@@ -1,5 +1,9 @@
 package com.jackiedeng.movies.controller;
 
+import com.jackiedeng.movies.common.enums.ApiResponseEnum;
+import com.jackiedeng.movies.common.util.ApiResponseUtil;
+import com.jackiedeng.movies.common.util.JwtUtil;
+import com.jackiedeng.movies.pojo.ApiResponse;
 import com.jackiedeng.movies.pojo.User;
 import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.result.ResultFactory;
@@ -53,17 +57,17 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("dologin")
-    public User login(@RequestParam String userName, @RequestParam String password) {
+    public ApiResponse login(@RequestParam String userName, @RequestParam String password) {
         User user = userService.queryByName(userName, password);
-//        JSONObject jsonObject = new JSONObject();
+
         if (user != null) {
-            return user;
-        } else {
-            System.out.println("无数据");
-            return null;
+            String token = JwtUtil.sign(user.getUserName(),user.getId());
+            if (token != null) {
+                return ApiResponseUtil.getApiResponse(token);
+            }
         }
-//        return jsonObject.toString();
-//        return this.userService.queryByName(userName, password);
+        //返回登陆失败消息
+        return ApiResponseUtil.getApiResponse(ApiResponseEnum.LOGIN_FAIL);
     }
 
     /**
@@ -111,8 +115,6 @@ public class UserController {
             /**
              * 新增成功的时候,并返回当前新增数据*/
             /*todo 在新建用户成功的时候设置当前时间为创建时间*/
-/*//            Timestamp date=new Timestamp(System.currentTimeMillis());
-//            user.setCreateTime(date);*/
             return ResultFactory.buildResult(200, "添加成功", this.userService.queryById(user.getId()));
         } else {
             return ResultFactory.bulidFailResult("添加失败");

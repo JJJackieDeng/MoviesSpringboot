@@ -9,7 +9,11 @@ import org.json.JSONObject;
  * @Description
  */
 public class CommonUtil {
-/*返回info为 空对象 的成功消息的JSON*/
-    public static JSONObject successJson(){return successJson();}
+    /**
+     * 返回info为 空对象 的成功消息的JSON
+     */
+    public static JSONObject successJson() {
+        return successJson();
+    }
 
 }
