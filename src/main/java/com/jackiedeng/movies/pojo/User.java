@@ -1,6 +1,8 @@
 package com.jackiedeng.movies.pojo;
 
+
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @Author jackie
@@ -17,7 +19,7 @@ public class User{
     private String phoneNumber;
     /**加密时使用*/
     private String salt;
-    private Timestamp createTime;
+    private Date createTime;
     private Timestamp modifiedTime;
 
     public Integer getId() {
@@ -76,11 +78,11 @@ public class User{
         this.phoneNumber = phoneNumber;
     }
 
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -108,8 +110,9 @@ public class UserController {
 //        生成8位数的salt
         String salt =JwtUtil.getCharAndNum(8);
         String secondPass = MD5Util.inputPassToDBPass(firstPass,salt);
-        user.setSalt(salt);
         user.setPassword(secondPass);
+        user.setCreateTime(new Date());
+        user.setSalt(salt);
         boolean flag = userService.insert(user);
         if (flag) {
             /**
