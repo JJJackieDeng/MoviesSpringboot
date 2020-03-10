@@ -73,7 +73,7 @@ public class UserController {
      * 分页查询查询全部用户
      */
     @GetMapping("selectAll")
-    public List<User> selectAll(@RequestParam Integer offset, @RequestParam Integer limit) {
+    public List<User> selectAll(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "20") Integer limit) {
         List<User> user = userService.queryAllByLimit(offset, limit);
         if (user != null) {
             return user;
@@ -98,7 +98,7 @@ public class UserController {
     }
 
     @PostMapping("add")
-    public Result addUser(User user) {
+    public Result addUser(User user) throws Exception{
 
         /**
          *MD5加密*/
@@ -110,14 +110,13 @@ public class UserController {
 //        生成8位数的salt
         String salt =JwtUtil.getCharAndNum(8);
         String secondPass = MD5Util.inputPassToDBPass(firstPass,salt);
-        user.setPassword(secondPass);
-        user.setCreateTime(new Date());
-        user.setSalt(salt);
         boolean flag = userService.insert(user);
         if (flag) {
+            user.setPassword(secondPass);
+            user.setCreateTime(new Date());
+            user.setSalt(salt);
             /**
              * 新增成功的时候,并返回当前新增数据*/
-            /*todo 在新建用户成功的时候设置当前时间为创建时间*/
             return ResultFactory.buildResult(200, "添加成功", this.userService.queryById(user.getId()));
         } else {
             return ResultFactory.bulidFailResult("添加失败");

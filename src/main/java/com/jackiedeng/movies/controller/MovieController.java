@@ -32,7 +32,7 @@ public class MovieController {
     /**
      * 分页查询查询全部电影*/
     @GetMapping("selectAll")
-    public List<Movie> selectAll(@RequestParam Integer offset, @RequestParam Integer limit) {
+    public List<Movie> selectAll(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "20") Integer limit) {
         List<Movie> movie = movieService.queryAllByLimit(offset, limit);
         if (movie != null) {
             return movie;

@@ -27,7 +27,7 @@ public class MovieInfoController {
         return this.movieInfoService.queryById(id);
     }
     @GetMapping("selectAll")
-    public List<MovieInfo> selectAll(@RequestParam Integer offset,@RequestParam Integer limit){
+    public List<MovieInfo> selectAll(@RequestParam(defaultValue = "0") Integer offset,@RequestParam(defaultValue = "20") Integer limit){
         return this.movieInfoService.queryAllByLimit(offset,limit);
     }
 

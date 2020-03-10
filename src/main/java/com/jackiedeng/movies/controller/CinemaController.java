@@ -29,7 +29,7 @@ public class CinemaController {
         return this.cinemaService.queryById(id);
     }
     @GetMapping("selectAll")
-    public List<Cinema> selectAll(@RequestParam Integer offset,@RequestParam Integer limit){
+    public List<Cinema> selectAll(@RequestParam(defaultValue = "0") Integer offset,@RequestParam(defaultValue = "20") Integer limit){
         return this.cinemaService.queryAllByLimit(offset,limit);
     }
 

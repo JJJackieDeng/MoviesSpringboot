@@ -22,7 +22,8 @@ import java.util.ArrayList;
  * @Date 2020/2/12 11:17
  * @Description
  */
-/*默认访问地址为http://localhost:8088/swagger-ui.html*/
+/**
+ * 默认访问地址为http://localhost:8081/swagger-ui.html*/
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

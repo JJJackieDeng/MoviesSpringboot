@@ -8,7 +8,9 @@ import com.jackiedeng.movies.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.RunnableScheduledFuture;
 
 /**
@@ -37,11 +39,11 @@ public class OrderController {
     /**
      * 查询全部*/
     @GetMapping("selectAll")
-    public List<Order> selectAll(@RequestParam Integer offset,@RequestParam Integer limit){
+    public List<Order> selectAll(@RequestParam(defaultValue = "0") Integer offset,@RequestParam(defaultValue = "20") Integer limit){
         return orderService.queryAllByLimit(offset,limit);
     }
     /**
-     * 更新*/
+     * 修改订单*/
     @PostMapping("update")
     public Result updateOne(@RequestBody Order requestOrder) {
         boolean flag = orderService.update(requestOrder);
@@ -52,17 +54,36 @@ public class OrderController {
         }
 
     }
-    /**新增*/
+    /**
+     * 新增订单*/
     @PostMapping("add")
-    public Result addOrder(@RequestParam Order order){
+    public Result addOrder(Order order){
         boolean flag= orderService.insert(order);
+        order.setOrderId(getOrderIdByUUID());
         if (flag){
             /*新增成功的时候*/
-            return ResultFactory.buildResult(200,"添加成功",flag);
+            return ResultFactory.buildResult(200,"添加成功",this.orderService.queryById(order.getId()));
         }else{
             return ResultFactory.bulidFailResult("添加失败");
         }
 
+    }
+    /**
+     * 生成唯一的订单号
+     * */
+    public static String getOrderIdByUUID(){
+//        int machineId = 1;//最大支持1-9个集群机器部署
+        Date date = new Date();
+        int hashCodeV = UUID.randomUUID().toString().hashCode();
+        //有可能是负数
+        if(hashCodeV < 0) {
+            hashCodeV = - hashCodeV;
+        }
+
+    //         0 代表前面补充0
+//         4 代表长度为4
+//         d 代表参数为正数型
+        return  Integer.toString(hashCodeV);
     }
 
 }
