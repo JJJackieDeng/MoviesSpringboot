@@ -10,8 +10,8 @@
         <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>
         <result property="orderUser" column="orderUser" jdbcType="VARCHAR"/>
         <result property="orderId" column="orderId" jdbcType="VARCHAR"/>
-        <result property="runTime" column="runTime" jdbcType="OTHER"/>
-        <result property="endTime" column="endTime" jdbcType="OTHER"/>
+        <result property="runTime" column="runTime" jdbcType="VARCHAR"/>
+        <result property="endTime" column="endTime" jdbcType="VARCHAR"/>
         <result property="address" column="address" jdbcType="VARCHAR"/>
     </resultMap>
 
