@@ -13,6 +13,7 @@ import java.util.Date;
 public class User{
     private Integer id;
     private Integer age;
+    private Integer role_id;
     private String sex;
     private String userName;
     private String password;
@@ -28,6 +29,14 @@ public class User{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(Integer role_id) {
+        this.role_id = role_id;
     }
 
     public Integer getAge() {
@@ -100,10 +109,12 @@ public class User{
         return "User{" +
                 "id=" + id +
                 ", age=" + age +
+                ", role_id=" + role_id +
                 ", sex='" + sex + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", salt='" + salt + '\'' +
                 ", createTime=" + createTime +
                 ", modifiedTime=" + modifiedTime +
                 '}';
