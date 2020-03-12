@@ -9,9 +9,9 @@ import com.jackiedeng.movies.common.enums.ApiResponseEnum;
  * @Description 返回给web的信息
  */
 public class ApiResponse {
-    private int errCode = 0;
+    private int Code = 0;
 
-    private String errMsg;
+    private String Msg;
 
     private Object data;
 
@@ -25,24 +25,24 @@ public class ApiResponse {
     }
 
     public ApiResponse(ApiResponseEnum apiResponseEnum){
-        this.errCode = apiResponseEnum.getErrCode();
-        this.errMsg = apiResponseEnum.getErrMsg();
+        this.Code = apiResponseEnum.getCode();
+        this.Msg = apiResponseEnum.getMsg();
     }
 
     public int getErrCode() {
-        return errCode;
+        return Code;
     }
 
     public void setErrCode(int errCode) {
-        this.errCode = errCode;
+        this.Code = errCode;
     }
 
     public String getErrMsg() {
-        return errMsg;
+        return Msg;
     }
 
     public void setErrMsg(String errMsg) {
-        this.errMsg = errMsg;
+        this.Msg = errMsg;
     }
 
     public Object getData() {
@@ -56,8 +56,8 @@ public class ApiResponse {
     @Override
     public String toString() {
         return "ApiResponse{" +
-                "errCode=" + errCode +
-                ", errMsg='" + errMsg + '\'' +
+                "Code=" + Code +
+                ", Msg='" + Msg + '\'' +
                 ", data=" + data +
                 '}';
     }
