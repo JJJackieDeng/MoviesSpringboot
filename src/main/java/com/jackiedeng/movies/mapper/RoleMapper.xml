@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jackiedeng.movies.mapper.RoleMapper">
+    <resultMap type="com.jackiedeng.movies.pojo.Role" id="RoleMap">
+        <result property="role_id" column="role_id" jdbcType="INTEGER"/>
+        <result property="role_name" column="role_name" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectAllById" resultMap="RoleMap">
+        select
+        R.*
+        FROM
+        roles R
+        LEFT JOIN user_role ur ON ur.role_id=R.role_id
+        WHERE ur.user_id = #{user_id}
+    </select>
+
+</mapper>
