@@ -4,7 +4,7 @@ package com.jackiedeng.movies.pojo;
  * @Author jackie
  * @Email 15975403320@163.com
  * @Date 2020/3/11 16:33
- * @Description
+ * @Description 用户与角色实体
  */
 public class UserRole {
     private Integer role_id;

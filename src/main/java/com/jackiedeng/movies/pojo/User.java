@@ -8,7 +8,7 @@ import java.util.Date;
  * @Author jackie
  * @Email 15975403320@163.com
  * @Date 2019/12/8 23:29
- * @Description
+ * @Description 用户实体
  */
 public class User{
     private Integer id;

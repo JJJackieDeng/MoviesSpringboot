@@ -3,6 +3,7 @@ package com.jackiedeng.movies.pojo;
 import javax.rmi.CORBA.Tie;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @Author jackie
@@ -16,9 +17,9 @@ public class Order {
     private String orderId;
     private String status;
     private String address;
-    private Time runTime;
-    private Time endTime;
-    private Timestamp createTime;
+    private String runTime;
+    private String endTime;
+    private Date createTime;
     private Timestamp modifiedTime;
 
     public Integer getId() {
@@ -61,24 +62,28 @@ public class Order {
         this.address = address;
     }
 
-    public Time getRunTime() {
+    public String getRunTime() {
         return runTime;
     }
 
-    public void setRunTime(Time runTime) {
+    public void setRunTime(String runTime) {
         this.runTime = runTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public void setCreateTime(Timestamp createTime) {
