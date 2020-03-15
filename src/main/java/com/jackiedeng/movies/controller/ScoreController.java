@@ -62,12 +62,13 @@ public class ScoreController {
         }
     }
 
-    @PostMapping("add")
-    public Result addScore(Score score){
+    @PostMapping(value = "add",consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public Result addScore(@RequestBody Score score){
         boolean flag = scoreService.insert(score);
         if(flag){
             return ResultFactory.buildResult(200,"评分成功",scoreService.queryById(score.getId()));
         }
-        return null;
+        return ResultFactory.bulidFailResult("评分失败，请联系管理员");
     }
 }
