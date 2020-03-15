@@ -51,9 +51,13 @@ public class ScoreServiceImpl implements ScoreService {
      * @return 实例对象
      */
     @Override
-    public Score insert(Score score) {
-        this.scoreMapper.insert(score);
-        return score;
+    public boolean insert(Score score) {
+        try {
+            this.scoreMapper.insert(score);
+        } catch (Exception e) {
+           return false;
+        }
+        return true;
     }
 
     /**
@@ -63,9 +67,13 @@ public class ScoreServiceImpl implements ScoreService {
      * @return 实例对象
      */
     @Override
-    public Score update(Score score) {
-        this.scoreMapper.update(score);
-        return this.queryById(score.getId());
+    public boolean update(Score score) {
+        try {
+            this.scoreMapper.update(score);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**

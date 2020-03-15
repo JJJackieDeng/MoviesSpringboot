@@ -8,12 +8,24 @@
         <result property="score" column="score" jdbcType="NUMERIC"/>
         <result property="user_id" column="user_id" jdbcType="INTEGER"/>
         <result property="comments" column="comments" jdbcType="VARCHAR"/>
+
+        <!-- movie-->
+        <association property="movie" javaType="com.jackiedeng.movies.pojo.Movie">
+            <id column="Info" property="id"></id>
+            <result column="movieName" jdbcType="VARCHAR" property="movieName"/>
+            <result column="MOVIE_ID" jdbcType="VARCHAR" property="movie_id"/>
+            <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
+        </association>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ScoreMap">
-        select
-          id, movie_id, score, user_id, comments
+        select id,
+               movie_id,
+               score,
+               user_id,
+               comments
         from movies.score
         where id = #{id}
     </select>
@@ -21,15 +33,16 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ScoreMap">
         select
-          id, movie_id, score, user_id, comments
-        from movies.score
+        s.*,m.movieName
+        from score s,movie m
+        WHERE s.movie_id = m.MOVIE_ID
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ScoreMap">
         select
-          id, movie_id, score, user_id, comments
+        id, movie_id, score, user_id, comments
         from movies.score
         <where>
             <if test="id != null">
@@ -78,7 +91,9 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from movies.score where id = #{id}
+        delete
+        from movies.score
+        where id = #{id}
     </delete>
 
 </mapper>

@@ -13,6 +13,10 @@ public class Score {
     private String score;
     private String comments;
 
+    /**
+     * 联查Movie表*/
+    private Movie movie;
+
     public Integer getId() {
         return id;
     }

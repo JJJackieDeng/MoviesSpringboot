@@ -34,7 +34,7 @@ public interface ScoreService {
      * @param score 实例对象
      * @return 实例对象
      */
-    Score insert(Score score);
+    boolean insert(Score score);
 
     /**
      * 修改数据
@@ -42,7 +42,7 @@ public interface ScoreService {
      * @param score 实例对象
      * @return 实例对象
      */
-    Score update(Score score);
+    boolean update(Score score);
 
     /**
      * 通过主键删除数据
