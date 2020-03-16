@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -40,13 +40,15 @@ public class UserController {
     /**
      * 根据ID更新
      */
-    @PostMapping("/update")
-    public Result updateOne(@RequestBody User requestUser) {
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public ApiResponse updateOne(@RequestBody User requestUser) {
+        String pwd = MD5Util.inputPassToDBPass(requestUser.getPassword(), requestUser.getSalt());
         boolean flag = userService.update(requestUser);
         if (flag) {
-            return ResultFactory.bulidSuccessResult(requestUser);
+            return ApiResponseUtil.getApiResponse(requestUser, 200, "更新成功");
         } else {
-            return ResultFactory.bulidFailResult("添加失败");
+            return ApiResponseUtil.getApiResponse(404, "更新失败");
         }
 
     }
@@ -56,13 +58,19 @@ public class UserController {
      */
     @ResponseBody
     @PostMapping("dologin")
-    public ApiResponse login(@RequestParam String userName, @RequestParam String password) {
-        User user = userService.queryByName(userName, password);
-
+    public ApiResponse login(@RequestParam String userName, @RequestParam String password, HttpSession session) {
+        User user = userService.queryByName(userName);
         if (user != null) {
-            String token = JwtUtil.sign(user.getUserName(),user.getId());
-            if (token != null) {
-                return ApiResponseUtil.getApiResponse(token);
+//            将前台表单填写的密码加盐二次加密
+            String pwd = MD5Util.inputPassToDBPass(password, user.getSalt());
+            if (pwd.equals(user.getPassword())) {
+                String token = JwtUtil.sign(user.getUserName(), user.getId());
+                if (token != null) {
+                    session.setAttribute("user",user);
+                    return ApiResponseUtil.getApiResponse(token);
+                }
+            } else {
+                return ApiResponseUtil.getApiResponse(ApiResponseEnum.AUTH_ERROR);
             }
         }
         //返回登陆失败消息
@@ -97,31 +105,43 @@ public class UserController {
         }
     }
 
-    @PostMapping("add")
-    public Result addUser(User user) throws Exception{
+    /**
+     *后台新增用户，前台为注册用户功能
+     */
+    @PostMapping(value="add",consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public Result addUser(@RequestBody  User user){
 
-        /**
-         *MD5加密*/
-        /**
+        /*
+         *MD5加密,前端注册用户时已对密码进行一次加密传输，这里只需要取JSON中的password后进行加盐加密即可
+         */
+        /*
          * 第一次加密*/
-        String firstPass = MD5Util.inputPassToFormPass(user.getPassword());
-        /**
+/*        String firstPass = MD5Util.inputPassToFormPass(user.getPassword());*/
+        /*
          * 第二次加密*/
 //        生成8位数的salt
-        String salt =JwtUtil.getCharAndNum(8);
-        String secondPass = MD5Util.inputPassToDBPass(firstPass,salt);
+        String salt = JwtUtil.getCharAndNum(8);
+        String secondPass = MD5Util.inputPassToDBPass(user.getPassword(), salt);
         boolean flag = userService.insert(user);
         if (flag) {
             user.setPassword(secondPass);
             user.setCreateTime(new Date());
             user.setSalt(salt);
-            /**
-             * 新增成功的时候,并返回当前新增数据*/
+            /*
+             * 新增成功的时候,并返回当前新增数据
+             * */
             return ResultFactory.buildResult(200, "添加成功", this.userService.queryById(user.getId()));
         } else {
             return ResultFactory.bulidFailResult("添加失败");
         }
 
+    }
+    @PostMapping("/logout")
+    @ResponseBody
+    public Result logout(HttpSession httpSession){
+        httpSession.removeAttribute("user");
+        return ResultFactory.bulidSuccessResult("请重新登录");
     }
 
 }
