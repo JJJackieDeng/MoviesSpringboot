@@ -16,8 +16,6 @@ import java.io.Serializable;
 public class ShiroSessionIdGenerator implements SessionIdGenerator {
     /**
      * 实现SessionId生成
-     * @Author Sans
-     * @CreateTime 2019/6/11 11:54
      */
     @Override
     public Serializable generateId(Session session) {
