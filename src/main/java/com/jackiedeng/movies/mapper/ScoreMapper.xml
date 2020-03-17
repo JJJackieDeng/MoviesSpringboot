@@ -8,6 +8,7 @@
         <result property="score" column="score" jdbcType="NUMERIC"/>
         <result property="user_id" column="user_id" jdbcType="INTEGER"/>
         <result property="comments" column="comments" jdbcType="VARCHAR"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
 
         <!-- movie-->
         <association property="movie" javaType="com.jackiedeng.movies.pojo.Movie">
@@ -42,7 +43,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ScoreMap">
         select
-        id, movie_id, score, user_id, comments
+        *
         from movies.score
         <where>
             <if test="id != null">
