@@ -1,5 +1,7 @@
 package com.jackiedeng.movies.pojo;
 
+import java.sql.Timestamp;
+
 /**
  * @Author jackie
  * @Email 15975403320@163.com
@@ -12,10 +14,19 @@ public class Score {
     private Integer user_id;
     private String score;
     private String comments;
+    private Timestamp createTime;
 
     /**
      * 联查Movie表*/
     private Movie movie;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
 
     public Integer getId() {
         return id;
@@ -57,6 +68,14 @@ public class Score {
         this.comments = comments;
     }
 
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "Score{" +
@@ -65,6 +84,8 @@ public class Score {
                 ", user_id=" + user_id +
                 ", score='" + score + '\'' +
                 ", comments='" + comments + '\'' +
+                ", createTime=" + createTime +
+                ", movie=" + movie +
                 '}';
     }
 }

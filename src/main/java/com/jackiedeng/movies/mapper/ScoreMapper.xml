@@ -33,9 +33,15 @@
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ScoreMap">
-        select
-        s.*,m.movieName
-        from score s,movie m
+        select s.id,
+               s.score,
+               s.user_id,
+               s.comments,
+               s.createTime,
+               m.movieName,
+               m.MOVIE_ID
+        from score s,
+             movie m
         WHERE s.movie_id = m.MOVIE_ID
         limit #{offset}, #{limit}
     </select>
