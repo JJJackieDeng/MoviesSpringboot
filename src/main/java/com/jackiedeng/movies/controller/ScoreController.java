@@ -1,9 +1,11 @@
 package com.jackiedeng.movies.controller;
 
+import com.jackiedeng.movies.pojo.MovieInfo;
 import com.jackiedeng.movies.pojo.Score;
 import com.jackiedeng.movies.pojo.User;
 import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.result.ResultFactory;
+import com.jackiedeng.movies.service.MovieInfoService;
 import com.jackiedeng.movies.service.ScoreService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,10 @@ public class ScoreController {
      */
     @Resource
     private ScoreService scoreService;
+
+    @Resource
+    private MovieInfoService movieInfoService;
+
 
     /**
      * 通过主键查询单条数据
@@ -67,6 +73,14 @@ public class ScoreController {
     public Result addScore(@RequestBody Score score){
         boolean flag = scoreService.insert(score);
         if(flag){
+            /*
+             *用户每次评分将分数统计平均数并存到movieInfo中
+             * */
+            String avg= scoreService.queryAvgById(score.getMovie_id()).toString();
+            MovieInfo movieInfo = new MovieInfo();
+            movieInfo.setId(score.getMovie_id());
+            movieInfo.setScore(avg);
+            movieInfoService.update(movieInfo);
             return ResultFactory.buildResult(200,"评分成功",scoreService.queryById(score.getId()));
         }
         return ResultFactory.bulidFailResult("评分失败，请联系管理员");
