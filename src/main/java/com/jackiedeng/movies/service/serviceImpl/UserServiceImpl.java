@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
     public Result login(User user) {
         Result result = new Result(404,null,user);
         try {
-            User userName = userMapper.queryByName(user.getUserName(), user.getPassword());
+            User userName = userMapper.queryByName(user.getUserName());
             if (userName == null) {
                 result.setMessage("用户名或密码错误");
             } else {
@@ -114,11 +114,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User queryByName(String userName, String password) {
-        User user = userMapper.queryByName(userName, password);
+    public User queryByName(String userName) {
+        User user = userMapper.queryByName(userName);
         if (user != null) {
             return user;
         }
         return null;
+    }
+
+    /**
+     * 根据用户名称模糊查询
+     *
+     * @param userName
+     */
+    @Override
+    public User selectByLikeName(String userName) {
+        return this.userMapper.selectByLikeName(userName);
     }
 }

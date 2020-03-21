@@ -23,15 +23,24 @@
         where id = #{id}
     </select>
 
-    <!--根据用户名查询单个-->
+    <select id="selectByLikeName" resultMap="UsersMap">
+        select
+        *
+        from
+        users
+        where
+        `userName` like CONCAT('%','#{userName}','%')
+    </select>
+
+
+
+    <!--根据用户名与密码查询单个，登录用-->
     <select id="queryByName" resultMap="UsersMap">
         select
         *
         from users
         where
         userName = #{userName}
-        and
-        password = #{password}
     </select>
 
     <!--分页查询所有-->

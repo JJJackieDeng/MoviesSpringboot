@@ -58,13 +58,17 @@ public interface UserService {
       * @param userName 登录专用接口
       * @return 是否成功
       */
-     User queryByName(String userName,String password);
+     User queryByName(String userName);
 
-//     User selectByname(User user);
+     /**
+      * 根据用户名称模糊查询*/
+     User selectByLikeName(String userName);
      /**
       * 用户登录
       * */
      Result login(User user);
+
+
 
 
 }

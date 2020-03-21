@@ -37,6 +37,11 @@ public class UserController {
         return this.userService.queryById(id);
     }
 
+    @GetMapping("/selectByLikeName")
+    public User selectByLikeName(@RequestParam String userName) {
+        return this.userService.selectByLikeName(userName);
+    }
+
     /**
      * 根据ID更新
      */
@@ -86,7 +91,6 @@ public class UserController {
         if (user != null) {
             return user;
         } else {
-            System.out.println("无数据");
             return null;
         }
     }
@@ -123,11 +127,11 @@ public class UserController {
 //        生成8位数的salt
         String salt = JwtUtil.getCharAndNum(8);
         String secondPass = MD5Util.inputPassToDBPass(user.getPassword(), salt);
+        user.setPassword(secondPass);
+        user.setCreateTime(new Date());
+        user.setSalt(salt);
         boolean flag = userService.insert(user);
         if (flag) {
-            user.setPassword(secondPass);
-            user.setCreateTime(new Date());
-            user.setSalt(salt);
             /*
              * 新增成功的时候,并返回当前新增数据
              * */

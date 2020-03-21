@@ -63,6 +63,9 @@ public interface UserMapper {
          */
         int deleteById(Integer id);
 
-        User queryByName(@Param("userName") String userName,@Param("password") String password);
+        User queryByName(@Param("userName") String userName);
+
+        User selectByLikeName(String userName);
+
 
 }
