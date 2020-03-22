@@ -77,4 +77,9 @@ public class MovieInfoServiceImpl implements MovieInfoService {
     public boolean deleteById(String id) {
         return this.movieInfoMapper.deleteById(id) > 0;
     }
+
+    @Override
+    public List<MovieInfo> queryOrderByScore() {
+        return this.movieInfoMapper.queryOrderByScore();
+    }
 }

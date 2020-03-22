@@ -1,8 +1,6 @@
 package com.jackiedeng.movies.pojo;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @Author jackie
@@ -12,6 +10,7 @@ import java.util.List;
  */
 public class MovieInfo {
     private Integer id;
+    private Float score;
     private String introduce;
     private String movieLength;
     private String actors;
@@ -21,12 +20,32 @@ public class MovieInfo {
     private Timestamp createTime;
     private Timestamp modifiedTime;
 
+    /**
+     * 联查Movie表*/
+    private Movie movie;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
     }
 
     public String getIntroduce() {
@@ -96,7 +115,8 @@ public class MovieInfo {
     @Override
     public String toString() {
         return "MovieInfo{" +
-                "id='" + id + '\'' +
+                "id=" + id +
+                ", score=" + score +
                 ", introduce='" + introduce + '\'' +
                 ", movieLength='" + movieLength + '\'' +
                 ", actors='" + actors + '\'' +
@@ -105,6 +125,7 @@ public class MovieInfo {
                 ", poster='" + poster + '\'' +
                 ", createTime=" + createTime +
                 ", modifiedTime=" + modifiedTime +
+                ", movie=" + movie +
                 '}';
     }
 }

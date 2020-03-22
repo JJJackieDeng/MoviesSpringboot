@@ -31,4 +31,9 @@ public class MovieInfoController {
         return this.movieInfoService.queryAllByLimit(offset,limit);
     }
 
+    @GetMapping("queryOrderByScore")
+    public List<MovieInfo> queryOrderByScore() {
+        return this.movieInfoService.queryOrderByScore();
+    }
+
 }

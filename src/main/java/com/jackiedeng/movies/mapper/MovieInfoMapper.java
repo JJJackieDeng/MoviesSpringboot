@@ -63,4 +63,7 @@ public interface MovieInfoMapper {
      * @return 影响行数
      */
     int deleteById(String id);
+    /**
+     * 按评分排序*/
+    List<MovieInfo> queryOrderByScore();
 }

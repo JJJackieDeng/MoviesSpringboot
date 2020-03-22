@@ -52,4 +52,5 @@ public interface MovieInfoService {
      */
     boolean deleteById(String id);
 
+    List<MovieInfo> queryOrderByScore();
 }
