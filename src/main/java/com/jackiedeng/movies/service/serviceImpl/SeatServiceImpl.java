@@ -27,7 +27,7 @@ public class SeatServiceImpl implements SeatService {
      * @return 实例对象
      */
     @Override
-    public Seat queryById(Integer id) {
+    public List<Seat> queryById(Integer id) {
         return this.seatMapper.queryById(id);
     }
 
@@ -87,7 +87,17 @@ public class SeatServiceImpl implements SeatService {
         try {
             this.seatMapper.deleteById(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean insertBatch(Seat seat) {
+        try {
+            this.seatMapper.insertBatch(seat);
+        } catch (Exception e) {
+            return false;
         }
         return true;
     }

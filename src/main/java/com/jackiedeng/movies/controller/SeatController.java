@@ -4,6 +4,7 @@ import com.jackiedeng.movies.pojo.Seat;
 import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.result.ResultFactory;
 import com.jackiedeng.movies.service.SeatService;
+import com.jackiedeng.movies.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,8 @@ public class SeatController {
     @PostMapping(value="add",consumes = "application/json", produces = "application/json")
     @ResponseBody
     public Result add(@RequestBody Seat seat) {
+        String scheduleId= MD5Util.generateSeatId(seat.getSchedule_id(),seat.getRow(),seat.getColumn());
+        seat.setSeatid(scheduleId);
         boolean flag = seatService.insert(seat);
         if (flag) {
             return ResultFactory.bulidSuccessResult(seatService.queryById(seat.getId()));
@@ -40,6 +43,11 @@ public class SeatController {
         } else {
             return null;
         }
+    }
+
+    @GetMapping("selectByScheduleId")
+    public List<Seat> queryByScheduleId(Integer scheduleId){
+        return this.seatService.queryById(scheduleId);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")

@@ -17,7 +17,7 @@ public interface SeatService {
      * @param id 主键
      * @return 实例对象
      */
-    Seat queryById(Integer id);
+    List<Seat> queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -51,5 +51,7 @@ public interface SeatService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+    boolean insertBatch(Seat seat);
 
 }

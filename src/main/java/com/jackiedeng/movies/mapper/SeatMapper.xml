@@ -11,13 +11,13 @@
         <result property="seatid" column="seatid" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <!--查询单个-->
+    <!--根据场次ID查询所有座位-->
     <select id="queryById" resultMap="SeatMap" resultType="com.jackiedeng.movies.pojo.Seat">
         select
         *
         from
         seats
-        where seats.id = #{id}
+        where seats.schedule_id= #{id}
     </select>
 
     <!--查询指定行数据-->
@@ -62,4 +62,15 @@
     <delete id="deleteById">
         delete from seats where id = #{id}
     </delete>
+
+    <!--批量插入-->
+    <insert id="insertBatch">
+        INSERT INTO seats
+        (schedule_id, row, `column`)
+        VALUES
+        <foreach collection="list" item="seats" separator=",">
+            (#{seats.schedule_id}, #{seats.row}, #{seats.column})
+        </foreach>
+    </insert>
+
 </mapper>

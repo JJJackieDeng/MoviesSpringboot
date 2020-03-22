@@ -19,7 +19,7 @@ public interface SeatMapper {
      * @param id 主键
      * @return 实例对象
      */
-    Seat queryById(Integer id);
+    List<Seat> queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -53,4 +53,7 @@ public interface SeatMapper {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+    /**
+     * 批量插入*/
+    boolean insertBatch(Seat seat);
 }
