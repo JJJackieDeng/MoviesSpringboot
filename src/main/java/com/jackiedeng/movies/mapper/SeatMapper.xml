@@ -66,11 +66,18 @@
     <!--批量插入-->
     <insert id="insertBatch">
         INSERT INTO seats
-        (schedule_id, row, `column`)
+        (schedule_id, row,seatid)
         VALUES
         <foreach collection="list" item="seats" separator=",">
-            (#{seats.schedule_id}, #{seats.row}, #{seats.column})
+            (#{seats.schedule_id}, #{seats.row}, #{seats.seatid})
         </foreach>
     </insert>
+
+    <select id="toInsert" resultType="integer" parameterType="list">
+        select count(id) as count from seats WHERE seatid in
+        <foreach collection="seatId" item="seatid" index="index" open="(" close=")" separator=",">
+            #{seatid}
+        </foreach>
+    </select>
 
 </mapper>

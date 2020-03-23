@@ -3,6 +3,7 @@ package com.jackiedeng.movies.service.serviceImpl;
 import com.jackiedeng.movies.mapper.SeatMapper;
 import com.jackiedeng.movies.pojo.Seat;
 import com.jackiedeng.movies.service.SeatService;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,12 +94,22 @@ public class SeatServiceImpl implements SeatService {
     }
 
     @Override
-    public boolean insertBatch(Seat seat) {
+    public boolean insertBatch(List<Seat> seat) {
         try {
             this.seatMapper.insertBatch(seat);
         } catch (Exception e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 判断是否能选座使用
+     *
+     * @param seatID
+     */
+    @Override
+    public Integer toInsert(List<String> seatID) {
+        return this.seatMapper.toInsert(seatID);
     }
 }

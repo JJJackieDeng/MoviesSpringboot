@@ -1,6 +1,11 @@
 package com.jackiedeng.movies.util;
 
+import com.alibaba.fastjson.JSON;
+import com.jackiedeng.movies.pojo.Seat;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author jackie
@@ -16,4 +21,8 @@ public class CommonUtil {
         return successJson();
     }
 
-}
+    public static List<Seat> formatJson(String seatJson){
+        Object parse = com.alibaba.fastjson.JSONObject.parse(seatJson);
+        return  new ArrayList<>();
+    }
+ }

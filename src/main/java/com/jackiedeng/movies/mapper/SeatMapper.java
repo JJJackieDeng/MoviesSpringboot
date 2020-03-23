@@ -1,8 +1,10 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Seat;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.naming.Name;
 import java.util.List;
 
 /**
@@ -55,5 +57,7 @@ public interface SeatMapper {
     boolean deleteById(Integer id);
     /**
      * 批量插入*/
-    boolean insertBatch(Seat seat);
+    boolean insertBatch(List<Seat> seat);
+
+    Integer toInsert(@Param(value = "seatId")List<String> seatID);
 }
