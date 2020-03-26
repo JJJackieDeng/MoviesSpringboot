@@ -1,13 +1,36 @@
 # Redis数据源
 spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    #本地
+    url: jdbc:mysql://localhost:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+    #服务器
+    #url: jdbc:mysql://47.116.19.145:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
   redis:
-    host: localhost
+    host: 47.116.19.145
     port: 6379
     timeout: 6000
+
     jedis:
       pool:
         max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
         max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
-    password: 123456
+    password: 123456dzq
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+server:
+  servlet:
+    context-path: /api
+  port: 8081
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  config-location: classpath:/mybatis-cfg.xml
+
+logging:
+  level.root: debug

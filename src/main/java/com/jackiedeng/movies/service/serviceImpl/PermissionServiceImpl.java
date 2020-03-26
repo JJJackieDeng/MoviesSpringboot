@@ -4,6 +4,7 @@ import com.jackiedeng.movies.mapper.PermissionMapper;
 import com.jackiedeng.movies.pojo.Permission;
 import com.jackiedeng.movies.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @Date 2020/3/14 19:49
  * @Description
  */
+@Service
 public class PermissionServiceImpl implements PermissionService {
 
     @Autowired

@@ -22,14 +22,15 @@
         from movies.users
         where id = #{id}
     </select>
-
+    <!--根据用户名模糊查询-->
     <select id="selectByLikeName" resultMap="UsersMap">
         select
         *
         from
         users
-        where
-        `userName` like CONCAT('%','#{userName}','%')
+        <if test="name!=null">
+            where name like concat('%',#{name},'%')
+        </if>
     </select>
 
 

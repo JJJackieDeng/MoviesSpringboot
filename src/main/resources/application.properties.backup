@@ -1,5 +1,7 @@
 spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
 spring.datasource.url=jdbc:mysql://localhost:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+##Ô¶³ÌÊý¾Ý¿â
+#spring.datasource.url=jdbc:mysql://47.116.19.145:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
 #spring.datasource.url=jdbc:mysql://localhost:3306/movies?useUnicode=true&useTimezone=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
 spring.datasource.username=root
 spring.datasource.password=123456

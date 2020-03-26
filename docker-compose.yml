@@ -1,0 +1,8 @@
+version: '3.1'
+services:
+  panda-config:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+    command: redis-server --requirepass 123456dzq
