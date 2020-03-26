@@ -18,7 +18,7 @@ public class ApiResponseUtil {
      * @return
      */
     public static ApiResponse getApiResponse(Object data) {
-        return getApiResponse(data, ApiResponseEnum.SUCCESS.getCode(), ApiResponseEnum.SUCCESS.getMsg());
+        return getApiResponse(ApiResponseEnum.SUCCESS.getCode(), ApiResponseEnum.SUCCESS.getMsg(),data);
     }
 
     /**
@@ -29,7 +29,7 @@ public class ApiResponseUtil {
      * @return
      */
     public static ApiResponse getApiResponse(int code, String msg) {
-        return getApiResponse(null, code, msg);
+        return getApiResponse( code,msg, null);
     }
 
     /**
@@ -43,10 +43,10 @@ public class ApiResponseUtil {
     }
 
 
-    public static ApiResponse getApiResponse(Object data, int code, String msg) {
+    public static ApiResponse getApiResponse( int code,String msg, Object data) {
         ApiResponse apiResponse = new ApiResponse(data);
-        apiResponse.setErrCode(code);
-        apiResponse.setErrMsg(msg);
+        apiResponse.setCode(code);
+        apiResponse.setMsg(msg);
         return apiResponse;
     }
 
