@@ -36,4 +36,12 @@ public class MD5Util {
         String dbPass =formPassToDBPass(formPass,saltDB);
         return dbPass;
     }
+
+    /**
+     *根据电影场次id+行+列生成唯一的座位ID
+     * */
+    public static String generateSeatId(Integer scheduleID,Integer row){
+        String seatsId= scheduleID.toString()+row.toString();
+        return md5(seatsId);
+    }
 }
