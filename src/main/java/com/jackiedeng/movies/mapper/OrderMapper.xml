@@ -5,43 +5,48 @@
 <mapper namespace="com.jackiedeng.movies.mapper.OrderMapper">
     <resultMap type="com.jackiedeng.movies.pojo.Order" id="OrdersMap">
         <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="movie_id" column="movie_id" jdbcType="INTEGER"/>
+        <result property="cinemaID" column="cinemaID" jdbcType="INTEGER"/>
         <result property="status" column="status" jdbcType="VARCHAR"/>
-        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-        <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>
         <result property="orderUser" column="orderUser" jdbcType="VARCHAR"/>
         <result property="orderId" column="orderId" jdbcType="VARCHAR"/>
+        <result property="seats" column="seats" jdbcType="VARCHAR"/>
+        <result property="total" column="total" jdbcType="VARCHAR"/>
+        <result property="invalid" column="invalid" jdbcType="VARCHAR"/>
         <result property="runTime" column="runTime" jdbcType="VARCHAR"/>
         <result property="endTime" column="endTime" jdbcType="VARCHAR"/>
         <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="modifiedTime" column="modifiedTime" jdbcType="TIMESTAMP"/>
+
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="OrdersMap">
-        select
-          ID, status, createTime, modifiedTime, orderUser, orderId, runTime, endTime, address
+        select *
         from movies.orders
         where ID = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="OrdersMap">
-        select
-          ID, status, createTime, modifiedTime, orderUser, orderId, runTime, endTime, address
+        select *
         from movies.orders
         limit #{offset}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OrdersMap">
-        select
-        *
+        select *
         from movies.orders
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into movies.orders(status, createTime, modifiedTime, orderUser, orderId, runTime, endTime, address)
-        values (#{status}, #{createTime}, #{modifiedTime}, #{orderUser}, #{orderId}, #{runTime}, #{endTime}, #{address})
+        insert into movies.orders(status, createTime, modifiedTime, orderUser, orderId, runTime, endTime, address,
+                                  movie_id,cinemaID,seats,invalid,total)
+        values (#{status}, #{createTime}, #{modifiedTime}, #{orderUser}, #{orderId}, #{runTime}, #{endTime}, #{address},
+                #{movie_id},#{cinemaID},#{seats},#{invalid},#{total})
     </insert>
 
     <!--通过主键修改数据-->
@@ -59,6 +64,21 @@
             </if>
             <if test="orderUser != null and orderUser != ''">
                 orderUser = #{orderUser},
+            </if>
+            <if test="movie_id != null and movie_id != ''">
+                movie_id = #{movie_id},
+            </if>
+            <if test="cinemaID != null and cinemaID != ''">
+                cinemaID = #{cinemaID},
+            </if>
+            <if test="total != null and total != ''">
+                total = #{total},
+            </if>
+            <if test="invalid != null and invalid != ''">
+                invalid = #{invalid},
+            </if>
+            <if test="seats != null and seats != ''">
+                seats = #{seats},
             </if>
             <if test="orderId != null and orderId != ''">
                 orderId = #{orderId},
@@ -78,6 +98,8 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from movies.orders where ID = #{id}
+        delete
+        from movies.orders
+        where ID = #{id}
     </delete>
 </mapper>

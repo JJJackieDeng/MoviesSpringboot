@@ -6,7 +6,9 @@ import com.jackiedeng.movies.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author jackie
@@ -43,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 新增数据
+     * 新增订单包括status,runTime,endTime,address,seats,invalid(订单有效时间)，total(总价)，cinemaID，movie_id
      *
      * @param order 实例对象
      * @return 实例对象
@@ -51,6 +53,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean insert(Order order) {
         try {
+            /*生成订单号*/
+            order.setOrderId(getOrderIdByUUID());
             this.orderMapper.insert(order);
         } catch (Exception e) {
             return false;
@@ -66,6 +70,18 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public boolean update(Order orders) {
+        /**
+         * 用户未付款之前取消订单，退款，*/
+//        String status=orders.getStatus();
+//        switch (status){
+//            case "已预订":
+//                System.out.println("");
+//            case "已支付":
+//            case "已完成":
+//            case "已取消":
+//            default:
+//                return false;
+//        }
         try {
             this.orderMapper.update(orders);
         } catch (Exception e) {
@@ -84,4 +100,23 @@ public class OrderServiceImpl implements OrderService {
     public boolean deleteById(Integer id) {
         return this.orderMapper.deleteById(id) > 0;
     }
+
+    /**
+     * 生成唯一的订单号
+     */
+    public static String getOrderIdByUUID() {
+//        int machineId = 1;//最大支持1-9个集群机器部署
+        Date date = new Date();
+        int hashCodeV = UUID.randomUUID().toString().hashCode();
+        //有可能是负数
+        if (hashCodeV < 0) {
+            hashCodeV = -hashCodeV;
+        }
+
+        //         0 代表前面补充0
+//         4 代表长度为4
+//         d 代表参数为正数型
+        return Integer.toString(hashCodeV);
+    }
+
 }
