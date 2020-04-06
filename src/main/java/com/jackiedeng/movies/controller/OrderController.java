@@ -36,6 +36,12 @@ public class OrderController {
         return this.orderService.queryById(id);
     }
 
+
+    @GetMapping("selectByUser")
+    public List<Order> selectByUser(String user) {
+        return this.orderService.queryByUser(user);
+    }
+
     /**
      * 查询全部*/
     @GetMapping("selectAll")
