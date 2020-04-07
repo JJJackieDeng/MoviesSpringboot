@@ -4,12 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jackiedeng.movies.mapper.ScheduleMapper">
     <resultMap type="com.jackiedeng.movies.pojo.Schedule" id="ScheduleMap">
-    <result property="id" column="id" jdbcType="INTEGER"/>
-    <result property="movie_id" column="movie_id" jdbcType="INTEGER"/>
-    <result property="cinema_id" column="cinema_id" jdbcType="INTEGER"/>
-    <result property="room" column="room" jdbcType="VARCHAR"/>
-    <result property="date" column="date" jdbcType="DATE"/>
-    <result property="schedule" column="schedule" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="movie_id" column="movie_id" jdbcType="INTEGER"/>
+        <result property="cinema_id" column="cinema_id" jdbcType="INTEGER"/>
+        <result property="room" column="room" jdbcType="VARCHAR"/>
+        <result property="date" column="date" jdbcType="DATE"/>
+        <result property="schedule" column="schedule" jdbcType="VARCHAR"/>
+        <!-- movie-->
+        <association property="movie" javaType="com.jackiedeng.movies.pojo.Movie">
+            <id column="Info" property="id"></id>
+            <result column="movieName" jdbcType="VARCHAR" property="movieName"/>
+            <result column="MOVIE_ID" jdbcType="VARCHAR" property="movie_id"/>
+            <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
+        </association>
     </resultMap>
 
 
@@ -25,10 +33,16 @@
     <!--分页查询所有-->
     <select id="queryAllByLimit" resultMap="ScheduleMap">
         select
-            *
+            s.*,m.movieName
         from
-            schedule
+            schedule s
+        inner join movie m
+        on
+         s.movie_id=m.movie_id
         limit #{offset}, #{limit}
+    </select>
+    <select id="queryByDate" resultMap="ScheduleMap">
+        select * from schedule where `date`=#{date} and `movie_id`=#{movie_id}
     </select>
 
     <!--新增一条数据-->
