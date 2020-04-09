@@ -32,8 +32,8 @@ public class UserController {
     /**
      * 查询单个
      */
-    @GetMapping("/selectOne/{id}")
-    public User selectOne(@PathVariable Integer id) {
+    @GetMapping("/selectOne")
+    public User selectOne(Integer id) {
         return this.userService.queryById(id);
     }
 
@@ -51,7 +51,7 @@ public class UserController {
         String pwd = MD5Util.inputPassToDBPass(requestUser.getPassword(), requestUser.getSalt());
         boolean flag = userService.update(requestUser);
         if (flag) {
-            return ApiResponseUtil.getApiResponse(requestUser, 200, "更新成功");
+            return ApiResponseUtil.getApiResponse(userService.queryById(requestUser.getId()));
         } else {
             return ApiResponseUtil.getApiResponse(404, "更新失败");
         }
