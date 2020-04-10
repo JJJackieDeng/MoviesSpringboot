@@ -1,5 +1,7 @@
 package com.jackiedeng.movies.pojo;
 
+import java.sql.Timestamp;
+
 /**
  * @Author jackie
  * @Email 15975403320@163.com
@@ -13,6 +15,7 @@ public class Cinema {
     private String address;
     private String telephone;
     private String seats;
+    private Timestamp createTime;
 
     public Integer getId() {
         return id;
@@ -62,6 +65,14 @@ public class Cinema {
         this.seats = seats;
     }
 
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "Cinema{" +
@@ -71,6 +82,7 @@ public class Cinema {
                 ", address='" + address + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", seats='" + seats + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 }

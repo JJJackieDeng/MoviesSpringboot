@@ -1,6 +1,5 @@
 package com.jackiedeng.movies.pojo;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -13,11 +12,24 @@ public class Movie{
     private Integer id;
     private String movie_id;
     private String movieName;
+    private String foreign;
+    private String area;
     private Timestamp createTime;
     private Timestamp modifiedTime;
     /**
      * 联查MovieInfo表*/
     private MovieInfo movieInfo;
+    /**
+     * 联查score表*/
+    private Score score;
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
 
     public MovieInfo getMovieInfo() {
         return movieInfo;
@@ -55,6 +67,22 @@ public class Movie{
         return createTime;
     }
 
+    public String getForeign() {
+        return foreign;
+    }
+
+    public void setForeign(String foreign) {
+        this.foreign = foreign;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
@@ -67,14 +95,20 @@ public class Movie{
         this.modifiedTime = modifiedTime;
     }
 
+
     @Override
     public String toString() {
-        return "MovieController{" +
+        return "Movie{" +
                 "id=" + id +
                 ", movie_id='" + movie_id + '\'' +
                 ", movieName='" + movieName + '\'' +
+                ", foreign='" + foreign + '\'' +
+                ", area='" + area + '\'' +
                 ", createTime=" + createTime +
                 ", modifiedTime=" + modifiedTime +
+                ", movieInfo=" + movieInfo +
+                ", score=" + score +
                 '}';
     }
+
 }

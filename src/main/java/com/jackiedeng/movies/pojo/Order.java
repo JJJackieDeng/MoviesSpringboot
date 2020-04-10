@@ -1,7 +1,5 @@
 package com.jackiedeng.movies.pojo;
 
-import javax.rmi.CORBA.Tie;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -24,8 +22,22 @@ public class Order {
     private String seats;
     private String invalid;
     private String total;
+    private Date date;
     private Date createTime;
     private Timestamp modifiedTime;
+
+
+    /**
+     * 联查movieInfo表*/
+    private MovieInfo movieInfo;
+
+    public MovieInfo getMovieInfo() {
+        return movieInfo;
+    }
+
+    public void setMovieInfo(MovieInfo movieInfo) {
+        this.movieInfo = movieInfo;
+    }
 
     public Integer getId() {
         return id;
@@ -123,6 +135,14 @@ public class Order {
         this.total = total;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -154,6 +174,7 @@ public class Order {
                 ", seats='" + seats + '\'' +
                 ", invalid='" + invalid + '\'' +
                 ", total='" + total + '\'' +
+                ", date=" + date +
                 ", createTime=" + createTime +
                 ", modifiedTime=" + modifiedTime +
                 '}';

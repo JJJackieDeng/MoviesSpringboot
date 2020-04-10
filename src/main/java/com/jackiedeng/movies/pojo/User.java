@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.pojo;
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import java.util.Date;
  * @Date 2019/12/8 23:29
  * @Description 用户实体
  */
-public class User{
+public class User implements Serializable {
     private Integer id;
     private Integer age;
     private Integer role_id;

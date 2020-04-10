@@ -22,6 +22,18 @@ public class Schedule {
     private String schedule;
     private Date date;
 
+    /**
+     * 联查Movie表*/
+    private Movie movie;
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
     public Integer getId() {
         return id;
     }
