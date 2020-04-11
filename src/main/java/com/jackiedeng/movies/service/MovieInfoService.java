@@ -17,7 +17,7 @@ public interface MovieInfoService {
      * @param id 主键
      * @return 实例对象
      */
-    MovieInfo queryById(String id);
+    MovieInfo queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -29,12 +29,18 @@ public interface MovieInfoService {
     List<MovieInfo> queryAllByLimit(int offset, int limit);
 
     /**
+     * 根据电影名称模糊查询电影
+     * @param movieName
+     */
+    List<MovieInfo> queryAllByLikeName(String movieName);
+
+    /**
      * 新增数据
      *
      * @param movieinfo 实例对象
      * @return 实例对象
      */
-    MovieInfo insert(MovieInfo movieinfo);
+    boolean insert(MovieInfo movieinfo);
 
     /**
      * 修改数据
@@ -50,7 +56,7 @@ public interface MovieInfoService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    boolean deleteById(Integer id);
 
     List<MovieInfo> queryOrderByScore();
 }

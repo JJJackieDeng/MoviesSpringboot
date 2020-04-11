@@ -6,7 +6,6 @@ import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Id;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
      * @return 实例对象
      */
     @Override
-    public MovieInfo queryById(String id) {
+    public MovieInfo queryById(Integer id) {
         return this.movieInfoMapper.queryById(id);
     }
 
@@ -44,16 +43,30 @@ public class MovieInfoServiceImpl implements MovieInfoService {
     }
 
     /**
+     * 根据电影名称模糊查询电影
+     *
+     * @param movieName
+     */
+    @Override
+    public List<MovieInfo> queryAllByLikeName(String movieName) {
+        return this.movieInfoMapper.queryAllByLikeName(movieName);
+    }
+
+    /**
      * 新增数据
      *
      * @param movieinfo 实例对象
      * @return 实例对象
      */
     @Override
-    public MovieInfo insert(MovieInfo movieinfo) {
-        this.movieInfoMapper.insert(movieinfo);
-        return movieinfo;
-    }
+    public boolean insert(MovieInfo movieinfo) {
+        try {
+            this.movieInfoMapper.insert(movieinfo);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+}
 
     /**
      * 修改数据
@@ -74,7 +87,7 @@ public class MovieInfoServiceImpl implements MovieInfoService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(String id) {
+    public boolean deleteById(Integer id) {
         return this.movieInfoMapper.deleteById(id) > 0;
     }
 

@@ -18,6 +18,8 @@
             <id column="movie" property="id"></id>
             <result property="movieName" column="movieName" jdbcType="VARCHAR"/>
             <result column="MOVIE_ID" jdbcType="VARCHAR" property="movie_id"/>
+            <result column="foreign" jdbcType="VARCHAR" property="foreign"/>
+            <result column="area" jdbcType="VARCHAR" property="area"/>
             <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
             <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
         </association>
@@ -25,12 +27,21 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="MovieinfoMap" resultType="com.jackiedeng.movies.pojo.MovieInfo">
-        select i.*,m.movieName
+        select i.*,m.movieName,m.`foreign`,m.area
         from movieinfo i
         left join movie m
         on
         m.MOVIE_ID = i.id
         where i.id = #{id}
+    </select>
+
+    <select id="queryAllByLikeName" resultMap="MovieinfoMap" resultType="com.jackiedeng.movies.pojo.MovieInfo">
+        select i.*, m.movieName, m.`foreign`, m.area
+        from movieinfo i
+                 left join movie m
+                           on
+                               m.MOVIE_ID = i.id
+        where m.movieName like concat(#{movieName},'%')
     </select>
 
     <!--查询指定行数据-->

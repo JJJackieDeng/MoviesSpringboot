@@ -20,7 +20,12 @@ public interface MovieInfoMapper {
      * @param id 主键
      * @return 实例对象
      */
-    MovieInfo queryById(String id);
+    MovieInfo queryById(Integer id);
+
+    /**
+     * 根据电影名称模糊查询电影
+     */
+    List<MovieInfo> queryAllByLikeName(String movieName);
 
     /**
      * 查询指定行数据
@@ -46,7 +51,7 @@ public interface MovieInfoMapper {
      * @param movieinfo 实例对象
      * @return 影响行数
      */
-    int insert(MovieInfo movieinfo);
+    boolean insert(MovieInfo movieinfo);
 
     /**
      * 修改数据
@@ -62,7 +67,7 @@ public interface MovieInfoMapper {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(String id);
+    int deleteById(Integer id);
     /**
      * 按评分排序*/
     List<MovieInfo> queryOrderByScore();
