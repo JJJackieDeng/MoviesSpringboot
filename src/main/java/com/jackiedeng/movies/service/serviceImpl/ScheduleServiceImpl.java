@@ -6,6 +6,7 @@ import com.jackiedeng.movies.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class ScheduleServiceImpl implements ScheduleService {
      */
     @Override
     public Schedule queryById(Integer id) {
-        return null;
+        return scheduleMapper.queryById(id);
     }
 
     /**
@@ -39,7 +40,17 @@ public class ScheduleServiceImpl implements ScheduleService {
      */
     @Override
     public List<Schedule> queryAllByLimit(int offset, int limit) {
-        return null;
+        return this.scheduleMapper.queryAllByLimit(offset,limit);
+    }
+
+    /**
+     * 根据日期查询场次
+     *
+     * @param date
+     */
+    @Override
+    public List<Schedule> queryByDate(Date date,Integer movie_id) {
+        return scheduleMapper.queryByDate(date,movie_id);
     }
 
     /**
@@ -65,7 +76,12 @@ public class ScheduleServiceImpl implements ScheduleService {
      */
     @Override
     public boolean update(Schedule schedule) {
-        return false;
+        try {
+            this.scheduleMapper.update(schedule);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -76,6 +92,11 @@ public class ScheduleServiceImpl implements ScheduleService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return false;
+        try {
+            this.scheduleMapper.deleteById(id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }
