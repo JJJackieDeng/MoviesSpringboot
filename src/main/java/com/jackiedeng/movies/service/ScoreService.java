@@ -2,6 +2,7 @@ package com.jackiedeng.movies.service;
 
 import com.jackiedeng.movies.pojo.Score;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface ScoreService {
      * @param id 主键
      * @return 实例对象
      */
-    Score queryById(Integer id);
+    List<Score> queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -51,4 +52,12 @@ public interface ScoreService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+    /**
+     * 通过movieId查询统计平均分并返回
+     *
+     * @param movieId 查询对象
+     * @return 实例对象
+     */
+    Float queryAvgById(Integer movieId);
 }

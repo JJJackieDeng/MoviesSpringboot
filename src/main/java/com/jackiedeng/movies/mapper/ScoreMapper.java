@@ -2,7 +2,9 @@ package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Score;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -13,15 +15,16 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-04 22:57:37
  */
+@Repository
 public interface ScoreMapper {
 
     /**
-     * 通过ID查询单条数据
+     * 通过MOVIE_ID查询评分评论
      *
      * @param id 主键
      * @return 实例对象
      */
-    Score queryById(Integer id);
+    List<Score> queryById(Integer id);
 
     /**
      * 查询指定行数据
@@ -64,5 +67,13 @@ public interface ScoreMapper {
      * @return 影响行数
      */
     int deleteById(Integer id);
+
+    /**
+     * 通过movieId查询统计平均分并返回
+     *
+     * @param movieId 查询对象
+     * @return 实例对象
+     */
+    Float queryAvgById(Integer movieId);
 
 }

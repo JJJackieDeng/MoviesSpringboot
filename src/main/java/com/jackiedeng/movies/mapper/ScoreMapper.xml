@@ -6,7 +6,7 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="movie_id" column="movie_id" jdbcType="INTEGER"/>
         <result property="score" column="score" jdbcType="NUMERIC"/>
-        <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="comments" column="comments" jdbcType="VARCHAR"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
 
@@ -25,17 +25,24 @@
         select id,
                movie_id,
                score,
-               user_id,
+               username,
                comments
         from movies.score
-        where id = #{id}
+        where movie_id = #{id}
+    </select>
+
+    <!--查询某个movieID的平均分-->
+    <select id="queryAvgById" resultType="float">
+        select CAST(AVG(score) AS DECIMAL(10, 1))
+        from score
+        WHERE movie_id = #{movieId}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ScoreMap">
         select s.id,
                s.score,
-               s.user_id,
+               s.username,
                s.comments,
                s.createTime,
                m.movieName,
@@ -61,8 +68,8 @@
             <if test="score != null">
                 and score = #{score}
             </if>
-            <if test="userId != null">
-                and user_id = #{userId}
+            <if test="username != null">
+                and username = #{username}
             </if>
             <if test="comments != null and comments != ''">
                 and comments = #{comments}
@@ -72,8 +79,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into movies.score(movie_id, score, user_id, comments)
-        values (#{movie_id}, #{score}, #{user_id}, #{comments})
+        insert into movies.score(movie_id, score, username, comments)
+        values (#{movie_id}, #{score}, #{username}, #{comments})
     </insert>
 
     <!--通过主键修改数据-->
@@ -86,8 +93,8 @@
             <if test="score != null">
                 score = #{score},
             </if>
-            <if test="userId != null">
-                user_id = #{userId},
+            <if test="username != null">
+                username = #{username},
             </if>
             <if test="comments != null and comments != ''">
                 comments = #{comments},
