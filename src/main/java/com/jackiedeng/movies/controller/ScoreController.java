@@ -39,7 +39,7 @@ public class ScoreController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public Score selectOne(Integer id) {
+    public List<Score> selectOne(Integer id) {
         return this.scoreService.queryById(id);
     }
 
@@ -57,7 +57,7 @@ public class ScoreController {
         }
     }
 
-    @DeleteMapping("deleteById")
+    @PostMapping("deleteById")
     public Result deleteById(@RequestParam Integer id) {
         boolean flag = scoreService.deleteById(id);
         if (flag) {
@@ -76,7 +76,7 @@ public class ScoreController {
             /*
              *用户每次评分将分数统计平均数并存到movieInfo中
              * */
-            String avg= scoreService.queryAvgById(score.getMovie_id()).toString();
+            Float avg= scoreService.queryAvgById(score.getMovie_id());
             MovieInfo movieInfo = new MovieInfo();
             movieInfo.setId(score.getMovie_id());
             movieInfo.setScore(avg);
