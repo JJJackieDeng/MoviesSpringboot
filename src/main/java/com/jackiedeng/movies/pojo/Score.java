@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class Score {
     private Integer id;
     private Integer movie_id;
-    private Integer user_id;
+    private String username;
     private String score;
     private String comments;
     private Timestamp createTime;
@@ -44,12 +44,12 @@ public class Score {
         this.movie_id = movie_id;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getScore() {
@@ -81,7 +81,7 @@ public class Score {
         return "Score{" +
                 "id=" + id +
                 ", movie_id=" + movie_id +
-                ", user_id=" + user_id +
+                ", username='" + username + '\'' +
                 ", score='" + score + '\'' +
                 ", comments='" + comments + '\'' +
                 ", createTime=" + createTime +
