@@ -24,7 +24,12 @@ import java.util.concurrent.RunnableScheduledFuture;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
+    /**
+     * 获取订单成交数量最多的前6个订单以及movieInfo*/
+    @GetMapping("selectHots")
+    public List<Order> selectHots(){
+        return this.orderService.queryHots();
+    }
     /**
      * 通过主键查询单条数据
      *
@@ -34,6 +39,17 @@ public class OrderController {
     @GetMapping("selectOne")
     public Order selectOne(Integer id) {
         return this.orderService.queryById(id);
+    }
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param主键
+     * @return 单条数据
+     */
+    @GetMapping("selectByOrderId")
+    public Order selectByOrderId(String orderId) {
+        return this.orderService.queryByOrderId(orderId);
     }
 
 

@@ -6,6 +6,9 @@ import com.jackiedeng.movies.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,9 +24,37 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderMapper orderMapper;
 
+    /**
+     * 查询订单数成交量最多的前六条数据
+     */
+    @Override
+    public List<Order> queryHots() {
+        return orderMapper.queryHots();
+    }
+
     @Override
     public Order queryById(Integer id) {
         return this.orderMapper.queryById(id);
+    }
+
+    /**
+     * 根据用户ID查询订单
+     *
+     * @param user
+     */
+    @Override
+    public List<Order> queryByUser(String user) {
+        return orderMapper.queryByUser(user);
+    }
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param orderId@return 实例对象
+     */
+    @Override
+    public Order queryByOrderId(String orderId) {
+        return orderMapper.queryByOrderId(orderId);
     }
 
     /**
@@ -63,25 +94,36 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 修改数据
+     * todo 修改订单状态
      *
      * @param orders 实例对象
      * @return 实例对象
      */
     @Override
     public boolean update(Order orders) {
-        /**
-         * 用户未付款之前取消订单，退款，*/
-//        String status=orders.getStatus();
-//        switch (status){
-//            case "已预订":
-//                System.out.println("");
-//            case "已支付":
-//            case "已完成":
-//            case "已取消":
-//            default:
-//                return false;
-//        }
+
+        /* * 用户未付款之前取消订单，退款，*/
+        String status=orders.getStatus();
+        String oldOrder = ""+orderMapper.queryById(orders.getId()).getDate()+orderMapper.queryById(orders.getId()).getRunTime();
+        DateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        Date date=null;
+        try {
+            date = dataFormat.parse(oldOrder);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (date.getTime()>date.getTime()) {
+
+        }
+        switch (status){
+            case "已预订":
+                System.out.println("");break;
+            case "已支付":break;
+            case "已完成":break;
+            case "已取消":break;
+            default:
+                return false;
+        }
         try {
             this.orderMapper.update(orders);
         } catch (Exception e) {
@@ -98,25 +140,30 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.orderMapper.deleteById(id) > 0;
+        try {
+            this.orderMapper.deleteById(id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
      * 生成唯一的订单号
      */
     public static String getOrderIdByUUID() {
-//        int machineId = 1;//最大支持1-9个集群机器部署
-        Date date = new Date();
-        int hashCodeV = UUID.randomUUID().toString().hashCode();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+        String date=simpleDateFormat.format(new Date());
+        int hashCodeV = +UUID.randomUUID().toString().hashCode();
         //有可能是负数
         if (hashCodeV < 0) {
             hashCodeV = -hashCodeV;
         }
-
+        String orderId=date+hashCodeV;
         //         0 代表前面补充0
 //         4 代表长度为4
 //         d 代表参数为正数型
-        return Integer.toString(hashCodeV);
+        return orderId;
     }
 
 }

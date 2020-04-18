@@ -32,9 +32,6 @@
             where name like concat('%',#{name},'%')
         </if>
     </select>
-
-
-
     <!--根据用户名与密码查询单个，登录用-->
     <select id="queryByName" resultMap="UsersMap">
         select
@@ -43,7 +40,6 @@
         where
         userName = #{userName}
     </select>
-
     <!--分页查询所有-->
     <select id="queryAllByLimit" resultMap="UsersMap">
         select
@@ -52,20 +48,17 @@
         users
         limit #{offset}, #{limit}
     </select>
-
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UsersMap">
         select
         *
         from movies.users
     </select>
-
     <!--新增一条数据-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into movies.users(userName, password, age,sex,phoneNumber, createTime,salt)
         values (#{userName}, #{password},#{age},#{sex} ,#{phoneNumber}, #{createTime},#{salt})
     </insert>
-
     <!--通过主键修改数据-->
     <update id="update">
         update movies.users
@@ -94,7 +87,6 @@
         </set>
         where id = #{id}
     </update>
-
     <!--通过主键删除-->
     <delete id="deleteById">
         delete from movies.users where id = #{id}

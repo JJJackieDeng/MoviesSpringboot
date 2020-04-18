@@ -3,9 +3,11 @@ package com.jackiedeng.movies.service.serviceImpl;
 import com.jackiedeng.movies.mapper.ScoreMapper;
 import com.jackiedeng.movies.pojo.Score;
 import com.jackiedeng.movies.service.ScoreService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -18,17 +20,18 @@ import java.util.List;
  */
 @Service("scoreService")
 public class ScoreServiceImpl implements ScoreService {
-    @Resource
-    private ScoreMapper scoreMapper;
+
+    @Autowired
+    ScoreMapper scoreMapper;
 
     /**
-     * 通过ID查询单条数据
+     * 通过MOVIE_ID查询评分评论
      *
      * @param id 主键
      * @return 实例对象
      */
     @Override
-    public Score queryById(Integer id) {
+    public List<Score> queryById(Integer id) {
         return this.scoreMapper.queryById(id);
     }
 
@@ -84,6 +87,22 @@ public class ScoreServiceImpl implements ScoreService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.scoreMapper.deleteById(id) > 0;
+        try {
+            this.scoreMapper.deleteById(id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 通过movieId查询统计平均分并返回
+     *
+     * @param movieId 查询对象
+     * @return 实例对象
+     */
+    @Override
+    public Float queryAvgById(Integer movieId) {
+        return scoreMapper.queryAvgById(movieId);
     }
 }

@@ -3,6 +3,7 @@ package com.jackiedeng.movies.mapper;
 import com.jackiedeng.movies.pojo.Schedule;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,10 @@ public interface ScheduleMapper {
      * @return 对象列表
      */
     List<Schedule> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 根据日期查询场次*/
+    List<Schedule> queryByDate(Date date,Integer movie_id);
 
     /**
      * 新增数据

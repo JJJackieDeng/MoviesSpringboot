@@ -14,12 +14,29 @@ import java.util.List;
 public interface OrderService {
 
     /**
+     * 查询订单数成交量最多的前六条数据*/
+    List<Order> queryHots();
+
+    /**
      * 通过ID查询单条数据
      *
      * @param
      * @return 实例对象
      */
     Order queryById(Integer id);
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param
+     * @return 实例对象
+     */
+    Order queryByOrderId(String orderId);
+
+    /**
+    * 根据用户ID查询订单
+    *  */
+    List<Order> queryByUser(String user);
 
     /**
      * 查询多条数据
@@ -53,5 +70,7 @@ public interface OrderService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+
 
 }

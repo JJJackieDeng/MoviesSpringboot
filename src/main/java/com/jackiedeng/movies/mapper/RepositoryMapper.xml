@@ -35,28 +35,16 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update movies.users
+        update movies.repository
         <set>
-            <if test="userName != null and userName != ''">
-                userName = #{userName},
+            <if test="schedule_id != null and schedule_id != ''">
+                schedule_id = #{schedule_id},
             </if>
-            <if test="age != null and age != ''">
-                age = #{age},
+            <if test="seats != null and seats != ''">
+                seats = #{seats},
             </if>
-            <if test="sex != null and sex != ''">
-                sex = #{sex},
-            </if>
-            <if test="password != null and password != ''">
-                password = #{password},
-            </if>
-            <if test="phoneNumber != null and phoneNumber != ''">
-                phoneNumber = #{phoneNumber},
-            </if>
-            <if test="createTime != null">
-                createTime = #{createTime},
-            </if>
-            <if test="modifiedTime != null">
-                modifiedTime = #{modifiedTime},
+            <if test="reserve != null and reserve != ''">
+                reserve = #{reserve},
             </if>
         </set>
         where id = #{id}

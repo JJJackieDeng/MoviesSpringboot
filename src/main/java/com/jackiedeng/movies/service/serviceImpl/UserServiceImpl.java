@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
         try {
             this.userMapper.deleteById(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
 
         }
         return true;

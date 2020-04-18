@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Service
 public class CinemaServiceImpl implements CinemaService {
+
     @Autowired
     CinemaMapper cinemaMapper;
 
@@ -29,7 +30,7 @@ public class CinemaServiceImpl implements CinemaService {
      * @return 实例对象
      */
     @Override
-    public Cinema queryById(String id) {
+    public Cinema queryById(Integer id) {
         return this.cinemaMapper.queryById(id);
     }
 
@@ -52,9 +53,13 @@ public class CinemaServiceImpl implements CinemaService {
      * @return 实例对象
      */
     @Override
-    public Cinema insert(Cinema cinema) {
-        this.cinemaMapper.insert(cinema);
-        return cinema;
+    public boolean insert(Cinema cinema) {
+        try {
+            this.cinemaMapper.insert(cinema);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -65,7 +70,12 @@ public class CinemaServiceImpl implements CinemaService {
      */
     @Override
     public boolean update(Cinema cinema) {
-        return this.cinemaMapper.update(cinema);
+        try {
+            this.cinemaMapper.update(cinema);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
 
     }
 
@@ -76,7 +86,12 @@ public class CinemaServiceImpl implements CinemaService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(String id) {
-        return this.cinemaMapper.deleteById(id) > 0;
+    public boolean deleteById(Integer id) {
+        try {
+            this.cinemaMapper.deleteById(id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

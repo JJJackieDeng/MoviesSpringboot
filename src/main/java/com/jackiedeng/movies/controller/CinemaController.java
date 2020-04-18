@@ -1,15 +1,13 @@
 package com.jackiedeng.movies.controller;
 
 import com.jackiedeng.movies.pojo.Cinema;
-import com.jackiedeng.movies.pojo.MovieInfo;
+import com.jackiedeng.movies.result.Result;
+import com.jackiedeng.movies.result.ResultFactory;
 import com.jackiedeng.movies.service.CinemaService;
-import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,13 +22,44 @@ import java.util.List;
 public class CinemaController {
     @Autowired
     private CinemaService cinemaService;
+
     @GetMapping("selectOne")
-    public Cinema selectOne(String id) {
+    public Cinema selectOne(Integer id) {
         return this.cinemaService.queryById(id);
     }
+
     @GetMapping("selectAll")
-    public List<Cinema> selectAll(@RequestParam(defaultValue = "0") Integer offset,@RequestParam(defaultValue = "20") Integer limit){
-        return this.cinemaService.queryAllByLimit(offset,limit);
+    public List<Cinema> selectAll(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "20") Integer limit) {
+        return this.cinemaService.queryAllByLimit(offset, limit);
     }
 
+    @PostMapping("add")
+    @ResponseBody
+    public Result addCinema(@RequestBody Cinema cinema){
+        cinema.setCreateTime(new Date());
+        boolean flag = cinemaService.insert(cinema);
+        if (flag){
+            return ResultFactory.buildResult(200,"添加成功",cinemaService.queryById(cinema.getId()));
+        }
+        return ResultFactory.bulidFailResult("添加失败，请重试或联系管理员");
+    }
+
+    @PostMapping("update")
+    @ResponseBody
+    public Result updateCinema(@RequestBody Cinema cinema){
+        boolean flag = cinemaService.update(cinema);
+        if (flag){
+            return ResultFactory.buildResult(200,"修改成功",cinemaService.queryById(cinema.getId()));
+        }
+        return ResultFactory.buildResult(400,"修改失败",null);
+    }
+
+    @PostMapping("deleteById")
+    public Result deleteCinema(Integer id){
+        if (id != null){
+            cinemaService.deleteById(id);
+            return ResultFactory.buildResult(200,"删除成功",null);
+        }
+        return ResultFactory.buildResult(400,"删除失败",null);
+    }
 }

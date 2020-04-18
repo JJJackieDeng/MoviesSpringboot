@@ -41,6 +41,7 @@
          s.movie_id=m.movie_id
         limit #{offset}, #{limit}
     </select>
+    <!--根据日期查询场次-->
     <select id="queryByDate" resultMap="ScheduleMap">
         select * from schedule where `date`=#{date} and `movie_id`=#{movie_id}
     </select>

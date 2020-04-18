@@ -13,6 +13,7 @@ public class Order {
     private Integer id;
     private Integer movie_id;
     private Integer cinemaID;
+    private String movieName;
     private String orderUser;
     private String orderId;
     private String status;
@@ -22,14 +23,23 @@ public class Order {
     private String seats;
     private String invalid;
     private String total;
-    private Date date;
+    private String date;
     private Date createTime;
     private Timestamp modifiedTime;
+
 
 
     /**
      * 联查movieInfo表*/
     private MovieInfo movieInfo;
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
 
     public MovieInfo getMovieInfo() {
         return movieInfo;
@@ -135,11 +145,11 @@ public class Order {
         this.total = total;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -165,6 +175,7 @@ public class Order {
                 "id=" + id +
                 ", movie_id=" + movie_id +
                 ", cinemaID=" + cinemaID +
+                ", movieName='" + movieName + '\'' +
                 ", orderUser='" + orderUser + '\'' +
                 ", orderId='" + orderId + '\'' +
                 ", status='" + status + '\'' +
@@ -177,6 +188,7 @@ public class Order {
                 ", date=" + date +
                 ", createTime=" + createTime +
                 ", modifiedTime=" + modifiedTime +
+                ", movieInfo=" + movieInfo +
                 '}';
     }
 }

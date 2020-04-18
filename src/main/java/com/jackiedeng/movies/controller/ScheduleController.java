@@ -34,7 +34,7 @@ public class ScheduleController {
     }
 
     /**
-     * 根据ID更新
+     * 根据ID修改信息
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
@@ -80,7 +80,7 @@ public class ScheduleController {
     /**
      * 根据ID删除单个schedule
      */
-    @DeleteMapping("deleteById")
+    @PostMapping("deleteById")
     public Result deleteById(@RequestParam Integer id) {
         boolean flag = scheduleService.deleteById(id);
         if (flag) {
@@ -106,4 +106,5 @@ public class ScheduleController {
         }
 
     }
+
 }

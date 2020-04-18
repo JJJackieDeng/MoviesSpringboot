@@ -18,7 +18,7 @@ public interface CinemaService {
      * @param id 主键
      * @return 实例对象
      */
-    Cinema queryById(String id);
+    Cinema queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -35,7 +35,7 @@ public interface CinemaService {
      * @param cinema 实例对象
      * @return 实例对象
      */
-    Cinema insert(Cinema cinema);
+    boolean insert(Cinema cinema);
 
     /**
      * 修改数据
@@ -51,6 +51,6 @@ public interface CinemaService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    boolean deleteById(Integer id);
 
 }

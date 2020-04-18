@@ -76,8 +76,12 @@ public class MovieInfoServiceImpl implements MovieInfoService {
      */
     @Override
     public boolean update(MovieInfo movieinfo) {
-        return this.movieInfoMapper.update(movieinfo);
-
+        try {
+            this.movieInfoMapper.update(movieinfo);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -88,7 +92,12 @@ public class MovieInfoServiceImpl implements MovieInfoService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.movieInfoMapper.deleteById(id) > 0;
+        try {
+            this.movieInfoMapper.deleteById(id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     @Override

@@ -7,6 +7,8 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="movieName" jdbcType="VARCHAR" property="movieName"/>
         <result column="MOVIE_ID" jdbcType="VARCHAR" property="movie_id"/>
+        <result column="foreign" jdbcType="VARCHAR" property="foreign"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="modifiedTime" jdbcType="TIMESTAMP" property="modifiedTime"/>
         <!-- movieInfo-->
@@ -15,15 +17,16 @@
             <result property="director" column="director" jdbcType="VARCHAR"/>
             <result property="actors" column="actors" jdbcType="VARCHAR"/>
             <result property="movieLength" column="movieLength" jdbcType="VARCHAR"/>
-            <result column="introduce" jdbcType="VARCHAR" property="introduce"/>
+            <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
             <result property="release" column="release" jdbcType="VARCHAR"/>
             <result property="poster" column="poster" jdbcType="VARCHAR"/>
+            <result property="score" column="score" jdbcType="VARCHAR"/>
         </association>
 
     </resultMap>
     <sql id="Base_Column_List">
-    id, movieName, MOVIE_ID, createTime, modifiedTime
-  </sql>
+        id, movieName, MOVIE_ID, createTime, modifiedTime
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -31,20 +34,23 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from movie
-    where id = #{id,jdbcType=INTEGER}
+        delete
+        from movie
+        where id = #{id,jdbcType=INTEGER}
     </delete>
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from movies.movie where id = #{id}
+        delete
+        from movies.movie
+        where id = #{id}
     </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.jackiedeng.movies.pojo.Movie"
             useGeneratedKeys="true">
-    insert into movie (movieName, MOVIE_ID, createTime,
-      modifiedTime)
-    values (#{movieName,jdbcType=VARCHAR}, #{movieId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-      #{modifiedTime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into movie (movieName, MOVIE_ID, createTime,
+                           modifiedTime)
+        values (#{movieName,jdbcType=VARCHAR}, #{movieId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{modifiedTime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.jackiedeng.movies.pojo.Movie"
             useGeneratedKeys="true">
         insert into movie
@@ -96,13 +102,13 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.jackiedeng.movies.pojo.Movie">
-    update movie
-    set movieName = #{moviename,jdbcType=VARCHAR},
-      MOVIE_ID = #{movieId,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      modifiedTime = #{modifiedtime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update movie
+        set movieName    = #{moviename,jdbcType=VARCHAR},
+            MOVIE_ID     = #{movieId,jdbcType=VARCHAR},
+            createTime   = #{createtime,jdbcType=TIMESTAMP},
+            modifiedTime = #{modifiedtime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
     <!--通过主键修改数据-->
     <update id="update">
         update movies.movie
@@ -124,16 +130,24 @@
     </update>
     <select id="queryById" parameterType="com.jackiedeng.movies.pojo.Movie"
             resultType="com.jackiedeng.movies.pojo.Movie">
-        select * from movie where id=#{id}
+        select *
+        from movie
+        where id = #{id}
     </select>
     <!--查询所有行数据-->
-    <select id="queryAllByLimit"   resultMap="BaseResultMap">
-    SELECT
-    m.id,m.movieName,i.id info,i.poster,i.introduce,i.director,i.actors,i.movieLength,i.release
-    from
-    movie m,movieinfo i
-    where
-    m.MOVIE_ID=i.id
-     limit #{offset}, #{limit}
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        SELECT m.id,
+               m.movieName,
+               i.id info,
+               i.poster,
+               i.introduce,
+               i.director,
+               i.actors,
+               i.movieLength,
+               i.release
+        from movie m,
+             movieinfo i
+        where m.MOVIE_ID = i.id
+        limit #{offset}, #{limit}
     </select>
 </mapper>

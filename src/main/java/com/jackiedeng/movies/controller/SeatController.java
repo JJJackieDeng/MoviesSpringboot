@@ -1,13 +1,25 @@
 package com.jackiedeng.movies.controller;
 
+import com.jackiedeng.movies.common.util.ApiResponseUtil;
+import com.jackiedeng.movies.mapper.OrderMapper;
+import com.jackiedeng.movies.pojo.ApiResponse;
+import com.jackiedeng.movies.pojo.Order;
+import com.jackiedeng.movies.pojo.Schedule;
 import com.jackiedeng.movies.pojo.Seat;
 import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.result.ResultFactory;
+import com.jackiedeng.movies.service.OrderService;
 import com.jackiedeng.movies.service.SeatService;
+import com.jackiedeng.movies.service.serviceImpl.OrderServiceImpl;
+import com.jackiedeng.movies.util.CommonUtil;
 import com.jackiedeng.movies.util.MD5Util;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,53 +31,117 @@ import java.util.List;
 @RestController
 @RequestMapping("seat")
 public class SeatController {
-
     @Autowired
     private SeatService seatService;
 
-    @PostMapping(value="add",consumes = "application/json", produces = "application/json")
+    @Autowired
+    private OrderService orderService;
+
+    /**
+     * 批量增加座位
+     */
+    @PostMapping(value = "add")
     @ResponseBody
-    public Result add(@RequestBody Seat seat) {
-        String scheduleId= MD5Util.generateSeatId(seat.getSchedule_id(),seat.getRow(),seat.getColumn());
-        seat.setSeatid(scheduleId);
-        boolean flag = seatService.insert(seat);
-        if (flag) {
-            return ResultFactory.bulidSuccessResult(seatService.queryById(seat.getId()));
+    public ApiResponse add(Integer scheduleId, String rows,Order order) {
+        List<Seat> seatList = new ArrayList<>();
+        Seat tempSeat;
+        List<String> scheduleList = new ArrayList<>();
+        String[] row = rows.split(",");
+        String tempScheduleId;
+        //批量插入座位
+        for (String s : row) {
+            tempSeat = new Seat();
+            tempSeat.setSchedule_id(scheduleId);
+            tempSeat.setRow(Integer.parseInt(s));
+            //使用场次ID与座位ID生成唯一标识符seatid
+            tempScheduleId = MD5Util.generateSeatId(scheduleId, Integer.parseInt(s));
+            scheduleList.add(tempScheduleId);
+            tempSeat.setSeatid(tempScheduleId);
+            seatList.add(tempSeat);
         }
-        return ResultFactory.bulidFailResult("添加失败");
+        List<Seat> list = new ArrayList<>();
+        Integer count = seatService.toInsert(scheduleList);
+        if (count == 0) {
+            /*
+             * 可以新增座位，生成订单
+             */
+            /*后端生成订单号*/
+/*             前端传过来的address,status,runtime为schudule中的schedule,seats字段为rows
+            order.setStatus();*/
+            boolean flag = seatService.insertBatch(seatList);
+            if (flag) {
+                /*
+                选座成功后生成订单，订单ID由orderImpl生成
+                * */
+/*                order.setOrderUser(""); 从当前session中的user中取出来userName
+                order.setStatus(""); //状态由前端传过来
+                order.setAddress(""); //地址根据cinemaID查出来，
+                order.setMovie_id(); movie_id由seatid查出来，
+                order.setCinemaID("");cinemaID由seatid查出来，
+                *//*电影开场日期*//*
+                order.setDate(""); schedule中的Date
+                *//*订单有效时间*//*
+                order.setInvalid("");//前端传过来
+                /*电影结束时间: 开场时间+电影时长*/
+//                Order order=new Order();
+//                order.setRunTime(order.getRunTime());
+//                order.setEndTime(order.get);
+//                order.setTotal(total);
+//                order.setSeats(rows);
+//                order.setAddress(address);
+//                order.setMovieName(movieName);
+//                order.setDate(date);
+                /*下单人*/
+                order.setOrderUser("admin");
+                //
+                order.setStatus("未支付");
+                orderService.insert(order);
+                return ApiResponseUtil.getApiResponse(200,"选座成功",this.orderService.queryById(order.getId()));
+            }
+        }
+        return ApiResponseUtil.getApiResponse(404, "座位已被选，请选择其他座位", null);
     }
 
+    /**
+     * 搜索全部座位信息
+     */
+
     @GetMapping("/selectAll")
-    public List<Seat> queryAll(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "20") Integer limit) {
+    public ApiResponse queryAll(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "20") Integer limit) {
         List<Seat> seats = seatService.queryAllByLimit(offset, limit);
         if (seats != null) {
-            return seats;
+            return ApiResponseUtil.getApiResponse(seats);
         } else {
-            return null;
+            return ApiResponseUtil.getApiResponse(400, "失败");
         }
     }
 
     @GetMapping("selectByScheduleId")
-    public List<Seat> queryByScheduleId(Integer scheduleId){
-        return this.seatService.queryById(scheduleId);
+    public ApiResponse queryByScheduleId(Integer scheduleId) {
+        List<Seat> seats = seatService.queryById(scheduleId);
+        if (seats != null) {
+            return ApiResponseUtil.getApiResponse(seats);
+        } else {
+            return ApiResponseUtil.getApiResponse(400, "失败");
+        }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public Result updateSeats(@RequestBody Seat seat){
+    public ApiResponse updateSeats(@RequestBody Seat seat) {
         boolean flag = seatService.update(seat);
-        if (flag){
-            return ResultFactory.buildResult(200,"修改成功",seatService.queryById(seat.getId()));
+        if (flag) {
+            return ApiResponseUtil.getApiResponse(seatService.queryById(seat.getId()));
         }
-        return ResultFactory.buildResult(400,"修改失败",null);
+        return ApiResponseUtil.getApiResponse(400, "失败");
     }
 
-    @DeleteMapping("delete")
-    public Result deleteSeats(Integer id){
-        if (id != null){
+    @PostMapping("delete")
+    public ApiResponse deleteSeats(Integer id) {
+        if (id != null) {
             seatService.deleteById(id);
-            return ResultFactory.buildResult(200,"删除成功",null);
+            return ApiResponseUtil.getApiResponse(seatService.queryById(null));
         }
-        return ResultFactory.buildResult(400,"删除失败",null);
+        return ApiResponseUtil.getApiResponse(400, "失败");
     }
 }

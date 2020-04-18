@@ -38,14 +38,14 @@ public class ShiroConfig {
     /**
      * Redis配置
      */
-    @Value("${spring.redis.host}")
-    private String host;
-    @Value("${spring.redis.port}")
-    private int port;
-    @Value("${spring.redis.timeout}")
-    private int timeout;
-    @Value("${spring.redis.password}")
-    private String password;
+//    @Value("${spring.redis.host}")
+    private String host ="47.116.19.145";
+//    @Value("${spring.redis.port}")
+    private int port=6379;
+//    @Value("${spring.redis.timeout}")
+    private int timeout=6000;
+//    @Value("${spring.redis.password}")
+    private String password="123456dzq";
 
     /**
      * 开启Shiro-aop 支持

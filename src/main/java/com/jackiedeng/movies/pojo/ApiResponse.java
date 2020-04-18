@@ -1,7 +1,5 @@
 package com.jackiedeng.movies.pojo;
 
-import com.jackiedeng.movies.common.enums.ApiResponseEnum;
-
 /**
  * @Author jackie
  * @Email 15975403320@163.com

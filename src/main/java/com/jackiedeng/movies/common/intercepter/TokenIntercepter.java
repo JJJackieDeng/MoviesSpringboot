@@ -33,7 +33,6 @@ public class TokenIntercepter implements HandlerInterceptor {
                 return true;
             }
         }
-        /*todo 不知道这里是否与Result文件夹中的声明重复*/
         ApiResponse apiResponse = ApiResponseUtil.getApiResponse(ApiResponseEnum.AUTH_ERROR);
         responseMessage(response,response.getWriter(),apiResponse);
         return false;

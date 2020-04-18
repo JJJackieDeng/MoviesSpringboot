@@ -34,7 +34,7 @@
         m.MOVIE_ID = i.id
         where i.id = #{id}
     </select>
-
+    <!--根据影片名称进行模糊查询-->
     <select id="queryAllByLikeName" resultMap="MovieinfoMap" resultType="com.jackiedeng.movies.pojo.MovieInfo">
         select i.*, m.movieName, m.`foreign`, m.area
         from movieinfo i

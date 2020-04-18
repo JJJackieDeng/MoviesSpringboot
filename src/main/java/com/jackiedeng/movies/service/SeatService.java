@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.service;
 
 import com.jackiedeng.movies.pojo.Seat;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public interface SeatService {
      */
     List<Seat> queryAllByLimit(int offset, int limit);
 
+
+
     /**
      * 新增数据
      *
@@ -51,7 +54,11 @@ public interface SeatService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
-
-    boolean insertBatch(Seat seat);
+    /**
+     * 批量增加座位*/
+    boolean insertBatch(List<Seat> seat);
+    /**
+     * 判断是否能选座使用*/
+    Integer toInsert(List<String> seatID);
 
 }

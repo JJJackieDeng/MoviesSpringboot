@@ -14,6 +14,11 @@ import java.util.List;
  */
 @Repository
 public interface OrderMapper {
+
+
+    /**
+     * 查询订单数成交量最多的前六条数据*/
+    List<Order> queryHots();
     /**
      * 通过ID查询单条数据
      *
@@ -21,6 +26,20 @@ public interface OrderMapper {
      * @return 实例对象
      */
     Order queryById(Integer id);
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param
+     * @return 实例对象
+     */
+    Order queryByOrderId(String orderId);
+
+
+    /**
+     * 根据用户ID查询订单
+     *  */
+    List<Order> queryByUser(String user);
 
     /**
      * 查询指定行数据

@@ -36,7 +36,8 @@ public class UserController {
     public User selectOne(Integer id) {
         return this.userService.queryById(id);
     }
-
+    /**
+     * 根据用户名称查询单个*/
     @GetMapping("/selectByLikeName")
     public User selectByLikeName(@RequestParam String userName) {
         return this.userService.selectByLikeName(userName);
@@ -98,8 +99,8 @@ public class UserController {
     /**
      * 根据ID删除单个user
      */
-    @DeleteMapping("deleteById")
-    public Result deleteById(@RequestParam Integer id) {
+    @PostMapping("deleteById")
+    public Result deleteById(@RequestParam(value = "id") Integer id) {
         boolean flag = userService.deleteById(id);
         if (flag) {
             //删除之后查询所有用户并返回
@@ -119,25 +120,25 @@ public class UserController {
         /*
          *MD5加密,前端注册用户时已对密码进行一次加密传输，这里只需要取JSON中的password后进行加盐加密即可
          */
-        /*
-         * 第一次加密*/
-/*        String firstPass = MD5Util.inputPassToFormPass(user.getPassword());*/
-        /*
-         * 第二次加密*/
 //        生成8位数的salt
         String salt = JwtUtil.getCharAndNum(8);
         String secondPass = MD5Util.inputPassToDBPass(user.getPassword(), salt);
         user.setPassword(secondPass);
         user.setCreateTime(new Date());
         user.setSalt(salt);
-        boolean flag = userService.insert(user);
-        if (flag) {
-            /*
-             * 新增成功的时候,并返回当前新增数据
-             * */
-            return ResultFactory.buildResult(200, "添加成功", this.userService.queryById(user.getId()));
+        User checkUser = userService.queryByName(user.getUserName());
+        if (checkUser !=null) {
+            return ResultFactory.buildResult(10001,"该用户名已被注册！请尝试其他用户名",null);
         } else {
-            return ResultFactory.bulidFailResult("添加失败");
+            boolean flag = userService.insert(user);
+            if (flag) {
+                /*
+                 * 新增成功的时候,并返回当前新增数据
+                 * */
+                return ResultFactory.buildResult(200, "添加成功", this.userService.queryById(user.getId()));
+            } else {
+                return ResultFactory.bulidFailResult("添加失败");
+            }
         }
 
     }

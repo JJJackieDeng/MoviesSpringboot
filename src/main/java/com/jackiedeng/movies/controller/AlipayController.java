@@ -36,12 +36,12 @@ public class AlipayController {
     public String doPay(String orderID, String total, String movieName, String discription) throws Exception {
         /*订单号*/
 //        String out_trade_no = orderID;
-        String out_trade_no = "11564654616156";
-        String total_amount = "78";
+        String out_trade_no = orderID;
+        String total_amount = total;
         /*订单名称*/
-        String subject = "我和我的祖国";
+        String subject = movieName;
         /*商品描述*/
-        String body = "";
+        String body = discription;
         return JSON.toJSONString(AlipayUtil.pay(out_trade_no, total_amount, subject, body));
 
     }

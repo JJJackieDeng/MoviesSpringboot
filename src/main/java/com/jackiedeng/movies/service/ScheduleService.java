@@ -3,6 +3,7 @@ package com.jackiedeng.movies.service;
 import com.jackiedeng.movies.pojo.MovieInfo;
 import com.jackiedeng.movies.pojo.Schedule;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,6 +29,10 @@ public interface ScheduleService {
      * @return 对象列表
      */
     List<Schedule> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 根据日期查询场次*/
+    List<Schedule> queryByDate(Date date,Integer movie_id);
 
     /**
      * 新增数据
