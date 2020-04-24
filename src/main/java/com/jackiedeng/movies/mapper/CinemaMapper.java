@@ -32,6 +32,10 @@ public interface CinemaMapper {
      */
     List<Cinema> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 根据影院名称模糊查询影院*/
+    List<Cinema> queryByName(String cinemaName);
+
 
     /**
      * 通过实体作为筛选条件查询

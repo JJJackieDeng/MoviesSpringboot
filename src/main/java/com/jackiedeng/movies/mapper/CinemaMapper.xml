@@ -31,6 +31,14 @@
         cinema
         limit #{offset}, #{limit}
     </select>
+    <!--根据影院名称查询影院-->
+    <select id="queryByName" resultMap="CinemaMap" resultType="com.jackiedeng.movies.pojo.Cinema">
+        select * from cinema
+        where cinemaName like concat(#{cinemaName},'%')
+<!--        <if test="cinemaName!=null">-->
+<!--        where cinemaName like concat(#{cinemaName},'%')-->
+<!--        </if>-->
+    </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="CinemaMap" resultType="com.jackiedeng.movies.pojo.Cinema">

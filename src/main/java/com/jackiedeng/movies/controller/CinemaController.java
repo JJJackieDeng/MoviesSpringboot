@@ -4,6 +4,7 @@ import com.jackiedeng.movies.pojo.Cinema;
 import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.result.ResultFactory;
 import com.jackiedeng.movies.service.CinemaService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,12 @@ public class CinemaController {
     @GetMapping("selectAll")
     public List<Cinema> selectAll(@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "20") Integer limit) {
         return this.cinemaService.queryAllByLimit(offset, limit);
+    }
+    /**
+     * 根据影院名称模糊查询影院*/
+    @GetMapping("selectByName")
+    public List<Cinema> selectByName(@Param("cinemaName") String cinemaName) {
+        return this.cinemaService.queryByName(cinemaName);
     }
 
     @PostMapping("add")

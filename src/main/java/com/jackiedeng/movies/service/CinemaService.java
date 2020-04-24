@@ -19,6 +19,9 @@ public interface CinemaService {
      * @return 实例对象
      */
     Cinema queryById(Integer id);
+    /**
+     * 根据影院名称模糊查询影院*/
+    List<Cinema> queryByName(String cinemaName);
 
     /**
      * 查询多条数据

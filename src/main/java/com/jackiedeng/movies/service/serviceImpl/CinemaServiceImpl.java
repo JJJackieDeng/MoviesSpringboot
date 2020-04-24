@@ -94,4 +94,14 @@ public class CinemaServiceImpl implements CinemaService {
         }
         return true;
     }
+
+    /**
+     * 根据影院名称模糊查询影院
+     *
+     * @param cinemaName
+     */
+    @Override
+    public List<Cinema> queryByName(String cinemaName) {
+        return cinemaMapper.queryByName(cinemaName);
+    }
 }
