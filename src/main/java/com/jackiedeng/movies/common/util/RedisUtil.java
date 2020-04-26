@@ -671,7 +671,7 @@ public class RedisUtil {
      * @param key   键
      * @param value 值
      * @param time  时间(秒)
-     * @return
+
      */
 
     public boolean lSet(String key, Object value, long time) {
