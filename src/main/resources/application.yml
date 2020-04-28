@@ -5,9 +5,10 @@ spring:
     username: root
     password: 123456
     #本地
-    url: jdbc:mysql://localhost:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+    #url: jdbc:mysql://localhost:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
     #服务器
-    #url: jdbc:mysql://47.116.19.145:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://47.116.19.145:3306/movies?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
     #初始化、最小、最大连接数
     initialSize: 3
     minidle: 3
@@ -19,11 +20,11 @@ spring:
     validationQuery: SELECT 1 FROM dual
     # 配置监控统计拦截的filters,去掉后，监控界面的sql无法统计
     filters: stat,wall,log4j
+
   redis:
     host: 47.116.19.145
     port: 6379
     timeout: 6000
-
     jedis:
       pool:
         max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
@@ -39,9 +40,9 @@ server:
     context-path: /api
   port: 8081
 
-mybatis:
-  mapper-locations: classpath:/mapper/*.xml
-  config-location: classpath:/mybatis-cfg.xml
+#mybatis:
+#  mapper-locations: classpath:/mapper/*.xml
+#  config-location: classpath:/mybatis-cfg.xml.backup
 
-logging:
-  level.root: debug
+#logging:
+#  level.root: debug

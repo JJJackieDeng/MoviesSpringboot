@@ -116,7 +116,8 @@ public class OrderServiceImpl implements OrderService {
 
         }
         switch (status){
-            case "已预订":
+            case "未支付":
+                /*如果已支付，*/
                 System.out.println("");break;
             case "已支付":break;
             case "已完成":break;

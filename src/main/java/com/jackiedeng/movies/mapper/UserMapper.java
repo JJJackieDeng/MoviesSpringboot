@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface UserMapper {
         /**
          * 通过ID查询单条数据

@@ -70,15 +70,15 @@ public class ShiroConfig {
          * 过滤器设置：按顺序过滤
          * 配置不拦截的URL*/
 //        filterChainDefinitionMap.put("/home", "anon");
-//        filterChainDefinitionMap.put("/register", "anon");
 //        filterChainDefinitionMap.put("/login", "anon");
 //        filterChainDefinitionMap.put("/showDetail", "anon");
 //        前后端查看接口
         filterChainDefinitionMap.put("/api/swagger-ui", "anon");
 //        前端注册用户
+        filterChainDefinitionMap.put("/register", "anon");
         filterChainDefinitionMap.put("/api/user/add", "anon");
         filterChainDefinitionMap.put("/api/user/dologin", "anon");
-        //如果配置了该项会导致拦截所有请求
+        //若用户未登录不能访问所有
 //        filterChainDefinitionMap.put("/**", "authc");
 
         // 配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据

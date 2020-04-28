@@ -2,6 +2,7 @@ package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Movie;
 import com.jackiedeng.movies.pojo.Order;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface MovieMapper {
 
     int deleteByPrimaryKey(Integer id);

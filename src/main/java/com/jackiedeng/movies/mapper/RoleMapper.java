@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Role;
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface RoleMapper {
 
     List<Role> selectAllById(Integer id);

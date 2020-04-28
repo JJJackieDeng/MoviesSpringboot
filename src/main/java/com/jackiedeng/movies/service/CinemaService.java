@@ -24,6 +24,10 @@ public interface CinemaService {
     List<Cinema> queryByName(String cinemaName);
 
     /**
+     * 根据影院名称模糊查询影院*/
+    List<Cinema> queryByAddress(String address);
+
+    /**
      * 查询多条数据
      *
      * @param offset 查询起始位置

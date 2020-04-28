@@ -2,6 +2,7 @@ package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Cinema;
 import com.jackiedeng.movies.pojo.MovieInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface CinemaMapper {
     /**
      * 通过ID查询单条数据
@@ -35,6 +37,10 @@ public interface CinemaMapper {
     /**
      * 根据影院名称模糊查询影院*/
     List<Cinema> queryByName(String cinemaName);
+
+    /**
+     * 根据影院名称模糊查询影院*/
+    List<Cinema> queryByAddress(String address);
 
 
     /**

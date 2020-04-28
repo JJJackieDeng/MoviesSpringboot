@@ -40,6 +40,13 @@ public class CinemaController {
         return this.cinemaService.queryByName(cinemaName);
     }
 
+    /**
+     * 根据影院名称模糊查询影院*/
+    @GetMapping("selectByAddress")
+    public List<Cinema> selectByAddress(@Param("address") String address) {
+        return this.cinemaService.queryByName(address);
+    }
+
     @PostMapping("add")
     @ResponseBody
     public Result addCinema(@RequestBody Cinema cinema){

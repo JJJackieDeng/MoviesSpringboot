@@ -56,7 +56,17 @@
             <version>4.1.0</version>
         </dependency>
 
-
+        <!-- 短信验证接口jar包 -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.6</version>
+        </dependency>
         <!--google二维码依赖-->
         <dependency>
             <groupId>com.google.zxing</groupId>
@@ -120,6 +130,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -222,6 +233,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.51</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>net.oschina.j2cache</groupId>-->
+<!--            <artifactId>j2cache-session-manager</artifactId>-->
+<!--            <version>1.2</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

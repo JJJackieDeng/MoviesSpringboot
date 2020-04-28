@@ -67,6 +67,11 @@
             </if>
         </where>
     </select>
+    <!--根据影院地址查询影院-->
+    <select id="queryByAddress"  resultMap="CinemaMap" resultType="com.jackiedeng.movies.pojo.Cinema">
+        select * from cinema
+        where address like concat(#{address},'%')
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true" >

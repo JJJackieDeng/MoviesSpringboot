@@ -26,7 +26,8 @@
                movie_id,
                score,
                username,
-               comments
+               comments,
+               createTime
         from movies.score
         where movie_id = #{id}
     </select>

@@ -3,6 +3,7 @@ package com.jackiedeng.movies.mapper;
 
 
 
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface RepositoryMapper {
         /**
          * 通过ID查询单条数据

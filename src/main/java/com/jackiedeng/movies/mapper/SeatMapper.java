@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Seat;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface SeatMapper {
     /**
      * 通过ID查询单条数据

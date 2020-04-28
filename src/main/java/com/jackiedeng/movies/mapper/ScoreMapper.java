@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Score;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @since 2020-03-04 22:57:37
  */
 @Repository
+@Mapper
 public interface ScoreMapper {
 
     /**

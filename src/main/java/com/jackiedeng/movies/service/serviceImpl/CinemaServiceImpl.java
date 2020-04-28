@@ -98,6 +98,16 @@ public class CinemaServiceImpl implements CinemaService {
     /**
      * 根据影院名称模糊查询影院
      *
+     * @param address
+     */
+    @Override
+    public List<Cinema> queryByAddress(String address) {
+        return cinemaMapper.queryByAddress(address);
+    }
+
+    /**
+     * 根据影院名称模糊查询影院
+     *
      * @param cinemaName
      */
     @Override

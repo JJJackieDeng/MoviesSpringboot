@@ -1,6 +1,7 @@
 package com.jackiedeng.movies.mapper;
 
 import com.jackiedeng.movies.pojo.Schedule;
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.List;
  * @Description
  */
 @Repository
+@Mapper
 public interface ScheduleMapper {
     /**
      * 通过ID查询单条数据
