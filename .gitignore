@@ -1,0 +1,8 @@
+.DS_Store
+/target/
+rebel.xml
+
+# Editor directories and files
+.idea
+*.iml
+
