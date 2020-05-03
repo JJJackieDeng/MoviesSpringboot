@@ -44,7 +44,7 @@ public class CinemaController {
      * 根据影院名称模糊查询影院*/
     @GetMapping("selectByAddress")
     public List<Cinema> selectByAddress(@Param("address") String address) {
-        return this.cinemaService.queryByName(address);
+        return this.cinemaService.queryByAddress(address);
     }
 
     @PostMapping("add")
