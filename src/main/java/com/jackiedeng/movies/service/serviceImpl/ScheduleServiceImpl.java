@@ -49,8 +49,8 @@ public class ScheduleServiceImpl implements ScheduleService {
      * @param date
      */
     @Override
-    public List<Schedule> queryByDate(Date date,Integer movie_id) {
-        return scheduleMapper.queryByDate(date,movie_id);
+    public List<Schedule> queryByDate(Date date,Integer movie_id,Integer cinema_id) {
+        return scheduleMapper.queryByDate(date,movie_id,cinema_id);
     }
 
     /**

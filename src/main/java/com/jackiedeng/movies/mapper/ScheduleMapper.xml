@@ -43,7 +43,7 @@
     </select>
     <!--根据日期查询场次-->
     <select id="queryByDate" resultMap="ScheduleMap">
-        select * from schedule where `date`=#{date} and `movie_id`=#{movie_id}
+        select * from schedule where `date`=#{date} and `movie_id`=#{movie_id} and `cinema_id`=#{cinema_id}
     </select>
 
     <!--新增一条数据-->

@@ -6,6 +6,7 @@ import com.jackiedeng.movies.pojo.Schedule;
 import com.jackiedeng.movies.result.Result;
 import com.jackiedeng.movies.result.ResultFactory;
 import com.jackiedeng.movies.service.ScheduleService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,10 +67,10 @@ public class ScheduleController {
      * 根据日期查询电影场次
      */
     @GetMapping("queryByDate")
-    public Result selectAllByDate(@RequestParam String dateStr, @RequestParam Integer movie_id) throws Exception {
+    public Result selectAllByDate(@Param(value = "dateStr") String dateStr, @Param(value = "movie_id") Integer movie_id, @Param(value = "cinema_id") Integer cinema_id) throws Exception {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = format.parse(dateStr);
-        List<Schedule> schedules = scheduleService.queryByDate(date, movie_id);
+        List<Schedule> schedules = scheduleService.queryByDate(date, movie_id, cinema_id);
         if (schedules != null) {
             return ResultFactory.buildResult(200, "成功", schedules);
         } else {

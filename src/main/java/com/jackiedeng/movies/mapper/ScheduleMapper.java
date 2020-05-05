@@ -35,7 +35,7 @@ public interface ScheduleMapper {
 
     /**
      * 根据日期查询场次*/
-    List<Schedule> queryByDate(Date date,Integer movie_id);
+    List<Schedule> queryByDate(Date date,Integer movie_id,Integer cinema_id);
 
     /**
      * 新增数据
