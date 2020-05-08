@@ -1,6 +1,5 @@
 package com.jackiedeng.movies.util;
 
-import com.alibaba.fastjson.JSON;
 import com.jackiedeng.movies.pojo.Seat;
 import org.json.JSONObject;
 

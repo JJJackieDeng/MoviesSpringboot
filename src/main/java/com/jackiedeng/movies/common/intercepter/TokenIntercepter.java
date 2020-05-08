@@ -1,12 +1,12 @@
 package com.jackiedeng.movies.common.intercepter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jackiedeng.movies.common.enums.ApiResponseEnum;
 import com.jackiedeng.movies.common.util.ApiResponseUtil;
 import com.jackiedeng.movies.common.util.JwtUtil;
-import com.alibaba.fastjson.JSONObject;
+import com.jackiedeng.movies.pojo.ApiResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import com.jackiedeng.movies.pojo.ApiResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
