@@ -3,7 +3,6 @@ package com.jackiedeng.movies.service.serviceImpl;
 import com.jackiedeng.movies.mapper.SeatMapper;
 import com.jackiedeng.movies.pojo.Seat;
 import com.jackiedeng.movies.service.SeatService;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
 package com.jackiedeng.movies.service.serviceImpl;
 
-import com.jackiedeng.movies.mapper.PermissionMapper;
 import com.jackiedeng.movies.pojo.Permission;
 import com.jackiedeng.movies.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;

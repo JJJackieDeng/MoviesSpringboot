@@ -1,11 +1,8 @@
 package com.jackiedeng.movies.service.serviceImpl;
 
 import com.jackiedeng.movies.mapper.CinemaMapper;
-import com.jackiedeng.movies.mapper.MovieInfoMapper;
 import com.jackiedeng.movies.pojo.Cinema;
-import com.jackiedeng.movies.pojo.MovieInfo;
 import com.jackiedeng.movies.service.CinemaService;
-import com.jackiedeng.movies.service.MovieInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

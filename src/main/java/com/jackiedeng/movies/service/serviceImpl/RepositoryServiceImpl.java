@@ -1,10 +1,7 @@
 package com.jackiedeng.movies.service.serviceImpl;
 
-import com.jackiedeng.movies.mapper.OrderMapper;
 import com.jackiedeng.movies.mapper.RepositoryMapper;
-import com.jackiedeng.movies.pojo.Order;
 import com.jackiedeng.movies.pojo.Repository;
-import com.jackiedeng.movies.service.OrderService;
 import com.jackiedeng.movies.service.RepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
