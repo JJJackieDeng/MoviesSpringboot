@@ -86,6 +86,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             /*生成订单号*/
             order.setOrderId(getOrderIdByUUID());
+            order.setCreateTime(new Date());
             this.orderMapper.insert(order);
         } catch (Exception e) {
             return false;
