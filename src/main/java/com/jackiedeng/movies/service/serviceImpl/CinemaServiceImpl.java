@@ -6,6 +6,7 @@ import com.jackiedeng.movies.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,6 +53,7 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public boolean insert(Cinema cinema) {
         try {
+            cinema.setCreateTime(new Date());
             this.cinemaMapper.insert(cinema);
         } catch (Exception e) {
             return false;
